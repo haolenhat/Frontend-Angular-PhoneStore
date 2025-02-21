@@ -1,0 +1,140 @@
+<div class="header__height"></div>
+<div class="header ">
+    <div class="row-s">
+        <!-- Logo Icon -->
+        <div class="header__logo__wrapper ">
+            <div class="header__logo">
+
+            </div>
+            <span class="header__logo__line__1st"></span>
+            <span class="header__logo__line__2nd"></span>
+            <span class="header__logo__line__3rd"></span>
+        </div>
+        <!-- Logo Image -->
+        <div class="header__logo__img">
+            <a class="alogo" [routerLink]="['home']"><img class="logohome" src="./icon/1.jpg" alt=""></a>
+        </div>
+
+        <!-- Submenu modal -->
+        <div class="header__location__submenu__modal"></div>
+        <!-- Search bar -->
+        <div class="header__search__bar">
+            <div class="header__search__bar__icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="header__search__bar__input">
+                <input type="text" placeholder="Bạn cần tìm gì?" (focus)="showSearch()" (blur)="hideSearch()"
+                    (input)="onSearchInputChange($event)" />
+                <div class="traingle" *ngIf="isSearchVisible && searchKeyword"></div>
+                <div class="item-search" *ngIf="isSearchVisible && searchKeyword">
+                    <div class="item-search-item" *ngFor="let product of searchResults"
+                        (click)="navigateToProduct(product.idSp)">
+                        <img [src]="product.linkAnh" alt="{{ product.tenSp }}">
+                        <span>{{ product.tenSp }}, {{ product.thongTinSp }}</span>
+                    </div>
+                </div>
+                <div class="modal" *ngIf="isSearchVisible"></div>
+            </div>
+
+
+
+
+
+            <div class="header__search__bar__modal">
+
+            </div>
+
+        </div>
+        <!-- Navbar list -->
+        <div class="header__navbar">
+            <ul class="header__navbar__list">
+                <li class="header__navbar__item">
+                    <div class="header__navbar__item__wrapper">
+                        <a href="" class="header__navbar__item__link">
+
+                            <i class='bx bxs-store'></i>
+                            <div class="header__navbar__item__link__desc__wrapper">
+                                <p>Gọi</p>
+                                <p>Mua hàng</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="header__navbar__item">
+                    <div class="header__navbar__item__wrapper">
+                        <a (click)="checkLoginAndNavigate('myorder')" routerLinkActive="active"
+                            class="header__navbar__item__link">
+                            <i class="fas fa-shipping-fast"></i>
+                            <div class="header__navbar__item__link__desc__wrapper">
+                                <p>Tra cứu</p>
+                                <p>đơn hàng</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="header__navbar__item">
+                    <div class="header__navbar__item__wrapper">
+                        <a (click)="checkLoginAndNavigate('cart')" routerLinkActive="active"
+                            class="header__navbar__item__link">
+                            <i class='bx bx-cart-alt'></i>
+                            <div class="header__navbar__item__link__desc__wrapper">
+                                <p>Giỏ</p>
+                                <p>hàng</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="header__navbar__item">
+                    <div (click)="toggleSubnav($event)" class="header__navbar__item__wrapper__last">
+                        <div class="header__navbar__item__link">
+                            <div class="header__navbar__item__link__icon__wrapper__last">
+                                <i class="far fa-user-circle"></i>
+                            </div>
+                            <div *ngIf="userName; else loginTemplate" class="header__navbar__item__link__desc__wrapper">
+                                <p>{{ userName }}</p> <!-- Hiển thị tên người dùng -->
+                            </div>
+                            <ng-template #loginTemplate>
+                                <div class="header__navbar__item__link__desc__wrapper">
+                                    <p>Đăng nhập</p> <!-- Hiển thị chữ "Đăng nhập" nếu userName không có giá trị -->
+                                </div>
+                            </ng-template>
+
+                        </div>
+                    </div>
+
+
+                    <div [class.show]="isSubnavOpen" class="header__subnav">
+                        <div class="box-info" [routerLink]="['home/info']">
+
+                            <i class='bx bx-info-circle'></i>
+                            <span>Thông tin người dùng</span>
+                        </div>
+                        <div *ngIf="userName" class="box-info" (click)="logout()">
+                            <i class='bx bx-log-out'></i>
+                            <span>Đăng xuất</span>
+                        </div>
+                        <div *ngIf="!userName" class="box-info" (click)="navigateToLogin()">
+                            <i class='bx bx-log-in'></i>
+                            <span>Đăng nhập</span>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showLoginForm" class="box-login">
+    <div class="box-login-item">
+        <i class='bx bx-x-circle' (click)="showLoginForm = false"></i>
+        <h4>Hãy trở thành N'member</h4>
+        <img src="./images/ms.png" alt="">
+        <p>Bạn cần đăng nhập để sử dụng chức năng này</p>
+        <div class="listbtn">
+            <button type="button" class="btn-loginup btn btn-secondary" [routerLink]="['/signup']">Đăng ký</button>
+            <button type="button" class="btn-loginup btn btn-info" [routerLink]="['/signin']">Đăng nhập</button>
+        </div>
+    </div>
+</div>

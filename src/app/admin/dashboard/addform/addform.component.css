@@ -1,0 +1,80 @@
+/* Copy the same CSS from the previous example here */
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input,
+textarea,
+select,
+button {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.form-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    background-color: #dddeea;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100000;
+
+}
+
+.form-main input {
+    margin-bottom: 0;
+}
+
+.form-main button {
+    margin-top: 10px;
+}
+
+.form-main .icon {
+    background-color: blue;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    right: 27%;
+    position: absolute;
+    border-radius: 50%;
+    top: 5px;
+}

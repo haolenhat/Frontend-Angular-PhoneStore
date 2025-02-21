@@ -1,0 +1,264 @@
+<div class="container bg-white">
+    <div class="row">
+        <div class="col-12">
+            <div class="heading-productnek" *ngIf="product && selectedOption">
+                <a [routerLink]="['home']" class="btn btn-warning" data-abc="true"> <i
+                        class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i> Trở
+                    về trang
+                    chủ</a>
+
+                <span> Điện thoại > Điện thoại {{ product.tenSp }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container bg-white ">
+    <div class="row all-sp">
+        <div class="col-md-7 border-end">
+            <div class="d-flex flex-column justify-content-center">
+                <!-- Hình ảnh chính sản phẩm -->
+                <div class="main_image">
+                    <img [src]="selectedOption?.linkMauAnhSp" id="main_product_image" width="350"
+                        alt="{{ product?.tenSp }}">
+                </div>
+
+                <!-- Thông số kỹ thuật sản phẩm -->
+                <div class="thumbnail_images" *ngIf="product">
+                    <h3>Thông số kỹ thuật</h3>
+                    <ul class="list-thongtin">
+                        <li><span>Trọng lượng: {{ product.trongLuong }} g</span><span>Màn hình: {{ product.manHinh
+                                }}</span></li>
+                        <li><span>Bộ nhớ (Ram): {{ product.boNho }}</span><span>Thẻ sim: {{ product.theSim }}</span>
+                        </li>
+                        <li><span>Hệ điều hành: {{ product.heDieuHanh }}</span><span>Cổng sạc: {{ product.congSac
+                                }}</span></li>
+                        <li><span>Pin: {{ product.pin }}</span><span>Bảo hành: {{ product.baoHanh }}</span></li>
+                        <li><span>Camera: {{ product.camera }}</span><span>Bảo mật: {{ product.baoMat }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="p-3 right-side">
+                <!-- Thông tin chi tiết sản phẩm -->
+                <div class="product-propeties mt-5" *ngIf="product && selectedOption">
+                    <h3 class="product-heading">{{ product.tenSp }} <span><i class='bx bxs-star'></i>{{
+                            product.soSaoTrungBinh }}
+                        </span> </h3>
+                    <h4 class="product-sub_heading">
+                        <span>Giá:</span>
+                        <span *ngIf="selectedOption.khuyenMai > 0" class="price-old">
+                            {{ selectedOption.giaSp | customCurrency }}
+                        </span>
+                        <span class="price-new">{{ selectedOption.giaSauKhuyenMai | customCurrency }}</span>
+                    </h4>
+                    <h4 class="product-sub_heading">Số lượng: {{ selectedOption.soLuong }}</h4>
+                    <span class="product-sub_heading fw-bold class-span">Chọn màu sắc và dung lượng để xem giá và số
+                        lượng</span>
+
+                    <!-- Màu sắc -->
+                    <span class="product-sub_heading  class-span">Màu sắc</span>
+                    <div class="row dungluong-list">
+                        <div class="col-3" *ngFor="let option of product.productOptions | unique: 'mauSac'"
+                            [class.selected]="option.mauSac === selectedColor" (click)="onColorChange(option.mauSac)">
+                            <img [src]="option.linkMauAnhSp" alt=""> <!-- Hiển thị đúng ảnh theo option -->
+                            <label>
+                                <input type="radio" name="color" [value]="option.mauSac" [(ngModel)]="selectedColor">
+                                {{ option.mauSac }}
+                            </label>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Dung lượng -->
+                    <span class="product-sub_heading  class-span">Dung lượng</span>
+                    <div class="dungluong-list">
+                        <div *ngFor="let storage of getStorageOptions()" [class.selected]="storage === selectedStorage"
+                            (click)="onStorageChange(storage)" class="col-3">
+                            <!-- Sử dụng class col-3 để tạo cấu trúc lưới -->
+                            <label>
+                                <i class='bx bxs-save'></i>
+                                <input type="radio" name="storage" [value]="storage" [(ngModel)]="selectedStorage">
+                                {{ storage }}
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Nút Thêm vào giỏ hàng -->
+                    <div class="btn-pro row">
+
+                        <div class="col-6 text-right buttons mt-3">
+
+                            <button class="btn btn-buy btn-dark" (click)="handleBuyNowClick()"><i
+                                    class='bx bx-money'></i> Mua
+                                ngay</button>
+                        </div>
+                        <div class="col-6 text-right buttons mt-3">
+                            <button class="btn btn-addcart btn-dark" (click)="handleAddToCartClick()"><i
+                                    class='bx bxs-cart-add'></i> Thêm vào giỏ hàng</button>
+                        </div>
+
+                        .<div class="col-12 text-right buttons mt-3">
+                            <div class="content">
+                                <i class='bx bxs-donate-blood'></i>
+                                <span>Trả góp 0% lãi suất.Trả trước chỉ từ(Hình thức chỉ hỗ trợ trực tiếp tại cửa
+                                    hàng)</span>
+                            </div>
+                            <div class="content">
+
+                                <i class='bx bx-shield-quarter'></i>
+                                <span>Bảo hành 12 tháng tại trung tâm bảo hành Chính hãng. 1 đổi 1 trong 30 ngày nếu có
+                                    lỗi phần cứng từ nhà sản xuất.</span>
+                            </div>
+                            <div class="content">
+                                <i class='bx bx-money-withdraw'></i>
+                                <span>Giá sản phẩm đã bao gồm VAT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-7 border-top-1">
+            <div class="card">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Đánh giá và bình luận</h4>
+                        <div *ngFor="let comment of paginatedComments" class="media g-mb-30 media-comment">
+                            <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
+                                src="./images/ms.png" alt="Image Description">
+                            <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                                <div class="g-mb-15">
+                                    <h5 class="h5 g-color-gray-dark-v1 mb-0 fw-bold">{{ comment.user?.tenKh }}</h5>
+                                    <span *ngIf="comment.thoiGianBinhLuan"
+                                        class="g-color-gray-dark-v4 g-font-size-12">{{
+                                        getTimeAgo(comment.thoiGianBinhLuan) }}</span>
+                                </div>
+                                <p>{{ comment.noiDung }}</p>
+                                <ul class="list-inline d-sm-flex my-0">
+                                    <li class="list-inline-item g-mr-20">
+                                        <div class="rating no-select">
+                                            <ng-container *ngFor="let rating of [5, 4, 3, 2, 1]">
+                                                <input type="radio" [checked]="comment.danhGiaSao === rating"
+                                                    [value]="rating"
+                                                    id="{{ 'star-' + comment.idBinhLuan + '-' + rating }}" disabled>
+                                                <label for="{{ 'star-' + comment.idBinhLuan + '-' + rating }}">☆</label>
+                                            </ng-container>
+                                        </div>
+                                    </li>
+                                    <ng-container *ngIf="comment.user?.idKh === currentUserId">
+                                        <li class="list-inline-item g-mr-20">
+                                            <div class="btn-comment u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                                (click)="editComment(comment)">
+                                                <i class='bx bx-pen'></i> Sửa
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item ml-auto">
+                                            <div class="btn-comment u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                                (click)="confirmDeleteComment(comment.idBinhLuan!)">
+                                                <i class='bx bx-trash'></i> Xoá
+                                            </div>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <nav class="phantrang" aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item" [class.disabled]="currentPage === 1">
+                                    <div class="page-link" (click)="goToPage(currentPage - 1)">Previous</div>
+                                </li>
+                                <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+                                    [class.active]="i + 1 === currentPage">
+                                    <div class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</div>
+                                </li>
+                                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                    <div class="page-link" (click)="goToPage(currentPage + 1)">Next</div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-12" *ngIf="!showCommentBox">
+                        <div class="yeucau" (click)="handleAddToCommentClick()"> <span>Bình luận ngay</span> <i
+                                class='bx bx-edit'></i> </div>
+                    </div>
+
+                    <div class="col-12" *ngIf="showCommentBox" #commentBox>
+                        <div class="comment-box ml-2">
+                            <div class="rating">
+                                <ng-container *ngFor="let rating of [5, 4, 3, 2, 1]">
+                                    <input type="radio" name="newRating" [value]="rating" id="{{ 'new-' + rating }}"
+                                        (change)="onRatingChange(rating)" [checked]="newComment.danhGiaSao === rating">
+                                    <label for="{{ 'new-' + rating }}">☆</label>
+                                </ng-container>
+                            </div>
+
+                            <div class="comment-area">
+                                <textarea class="form-control" placeholder="Hãy để lại nội dung của bạn ở đây" rows="4"
+                                    maxlength="150" [(ngModel)]="newComment.noiDung"></textarea>
+                            </div>
+
+                            <div class="comment-btns mt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="pull-left">
+                                            <button class="btn btn-success btn-sm"
+                                                (click)="cancelComment()">Huỷ</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="pull-right">
+                                            <button *ngIf="isAdding" class="btn btn-success send btn-sm"
+                                                (click)="addComment()">Gửi bình luận<i
+                                                    class='bx bxs-send ml-1'></i></button>
+                                            <button *ngIf="isEditing" class="btn btn-success send btn-sm"
+                                                (click)="updateComment()">Sửa bình luận<i
+                                                    class='bx bxs-send ml-1'></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-box" *ngIf="showModalBox">
+    <div class="modal-switch">
+        <h2>Bạn có muốn xóa bình luận này này?</h2>
+        <div class="toggle-container"> <input type="radio" name="choice" id="confirm" (click)="deleteComment()" />
+            <label class="option-label" for="confirm">Yes</label> <input type="radio" name="choice" id="cancel" checked
+                (click)="cancelModalBox()" /> <label class="option-label" for="cancel">No</label> <span
+                class="toggleFilter"></span>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="showLoginForm" class="box-login">
+    <div class="box-login-item"> <i class='bx bx-x-circle' (click)="showLoginForm = false"></i>
+        <h4>Hãy trở thành N'member</h4> <img src="./images/ms.png" alt="">
+        <p>Bạn cần đăng nhập để sử dụng chức năng này</p>
+        <div class="listbtn"> <button type="button" class="btn-loginup btn btn-secondary"
+                [routerLink]="['/signup']">Đăng ký</button> <button type="button" class="btn-loginup btn btn-info"
+                [routerLink]="['/signin']">Đăng nhập</button> </div>
+    </div>
+</div>

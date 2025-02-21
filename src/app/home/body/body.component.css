@@ -1,0 +1,486 @@
+body {
+
+    background-color: #eee;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: 3px solid #000;
+
+}
+
+.nav-tabs>li>a {
+
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+    border-bottom: 3px solid #000
+}
+
+.navbar {
+
+    border-bottom: 1px solid #00000012;
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    background-color: #ffffff !important;
+}
+
+.navbar-brand {
+
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: 'Allerta Stencil', sans-serif;
+    font-weight: 500;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.card {
+
+    border: none;
+
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 10px;
+}
+
+.card-text {
+
+    font-size: 13px;
+}
+
+.guarantee {
+
+    color: #05882c;
+    margin-left: 4px;
+    font-weight: 700
+}
+
+hr {
+    margin: 0.2rem 0;
+    color: #bfbebe;
+}
+
+.buttons button {
+
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+.card-custom {
+    transition: linear 0.5s;
+}
+
+.card-custom:hover {
+    opacity: 0.6;
+    transition: linear 0.1s;
+}
+
+.carousel-item img {
+    height: 400px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Nền mờ tối */
+    border-radius: 50%;
+    /* Hình tròn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    /* Màu biểu tượng */
+    position: absolute;
+    /* Căn chỉnh vị trí */
+    top: 50%;
+    /* Đưa nút lên giữa dọc theo slider */
+    transform: translateY(-50%);
+    /* Căn giữa hoàn toàn theo chiều dọc */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: rgba(236, 231, 231, 0.8);
+    /* Nền sáng khi hover */
+    color: black;
+    /* Thay đổi màu biểu tượng */
+    transform: translateY(-50%) scale(1.1);
+    /* Phóng to nhẹ khi hover */
+}
+
+/* Biểu tượng prev và next */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 20px 20px;
+    /* Kích thước biểu tượng */
+    filter: invert(1);
+    /* Đổi màu sang trắng cho biểu tượng */
+}
+
+/* Tùy chỉnh khoảng cách nút */
+.carousel-control-prev {
+    left: 10px;
+    /* Khoảng cách từ nút prev đến cạnh trái */
+}
+
+.carousel-control-next {
+    right: 10px;
+    /* Khoảng cách từ nút next đến cạnh phải */
+}
+
+.carousel-inner {
+    border-radius: 10px;
+}
+
+.col-2 {
+    overflow: hidden;
+    height: 400px;
+    /* Đặt chiều cao cố định */
+    display: flex;
+    /* Để hỗ trợ căn chỉnh nội dung */
+    flex-direction: column;
+    /* Giữ nội dung thẳng hàng theo chiều dọc */
+    justify-content: space-between;
+    /* Căn đều nội dung bên trong */
+    border: 1px solid #eaecf0;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.card-img-top {
+    width: 150px;
+    height: 170px;
+    max-height: 95%;
+    object-fit: contain;
+}
+
+.card-body span {
+    line-height: 18px;
+    font-size: 14px;
+}
+
+
+.about-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-item span {
+    font-size: 12px;
+}
+
+.price-custom span {
+    margin-right: 5px;
+}
+
+.productname {
+    line-height: 18px;
+    font-size: 14px;
+    display: -webkit-box;
+    /* Sử dụng hộp flexbox của WebKit */
+    -webkit-line-clamp: 2;
+    /* Hiển thị tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+    /* Định hướng các dòng theo chiều dọc */
+    overflow: hidden;
+
+}
+
+.sale-product {
+    color: red;
+}
+
+.sale-product1 {
+    text-decoration: line-through;
+}
+
+.sale-product2 {
+    color: red;
+    font-weight: bold;
+}
+
+.custom-h {
+    color: #1d2939;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container-custom {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.product__promotions {
+    line-height: 18px;
+    font-size: 14px;
+    display: -webkit-box;
+    /* Sử dụng hộp flexbox của WebKit */
+    -webkit-line-clamp: 2;
+    /* Hiển thị tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+    /* Định hướng các dòng theo chiều dọc */
+    overflow: hidden;
+
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+
+.phantrang {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+.active>.page-link,
+.page-link.active {
+    background-color: #00c9a7;
+    border: 0.5px solid;
+}
+
+.page-link {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #130f40;
+    font-family: 'Lato' !important;
+}
+
+.search-box {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+
+.input-search {
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #22a6b3;
+    padding-right: 40px;
+    color: #fff;
+}
+
+.input-search::placeholder {
+    color: rgba(255, 255, 255, .5);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+}
+
+.btn-search {
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color: #ffffff;
+    background-color: #00c9a7;
+    pointer-events: painted;
+}
+
+.btn-search:focus~.input-search {
+    width: 300px;
+    border-radius: 10px;
+    background-color: #00c9a7;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.input-search:focus {
+    width: 300px;
+    border-radius: 10px;
+    background-color: #00c9a7;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+
+
+/*  footer   */
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida  Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+footer .fa-heart {
+    color: red;
+}
+
+footer .fa-dev {
+    color: #fff;
+}
+
+footer .fa-twitter-square {
+    color: #1da0f1;
+}
+
+footer .fa-instagram {
+    color: #f0007c;
+}
+
+fotter .fa-linkedin {
+    color: #0073b1;
+}
+
+footer .fa-codepen {
+    color: #fff
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.youtubeBtn {
+    position: fixed;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: 45px;
+    cursor: pointer;
+    transition: all .3s;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+}
+
+.youtubeBtn i {
+    font-size: 20px;
+    float: left;
+}
+
+.youtubeBtn a {
+    color: #ff0000;
+    animation: youtubeAnim 1000ms linear infinite;
+    float: right;
+}
+
+.youtubeBtn a:hover {
+    color: #c9110f;
+    transition: all .3s ease-in-out;
+    text-shadow: none;
+}
+
+.youtubeBtn i:active {
+    transform: scale(.9);
+    transition: all .3s ease-in-out;
+}
+
+.youtubeBtn span {
+    font-family: 'Lato';
+    font-weight: normal;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    float: right;
+    line-height: 20px;
+    padding-left: 5px;
+
+}
+
+@keyframes youtubeAnim {
+
+    0%,
+    100% {
+        color: #c9110f;
+    }
+
+    50% {
+        color: #ff0000;
+    }
+}
+
+/* footer  */
+
+.headingall {
+    margin-right: 20px;
+
+}
+
+.form-select {
+    width: 30%;
+    margin-right: 10px;
+}
+
+
+.hieuung {
+    transition: linear 1s;
+}
+
+/* Đảm bảo bạn thêm các lớp CSS vào tệp .css của component */
+
+.product-item-enter-active,
+.product-item-leave-active {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.product-item-enter,
+.product-item-leave-to .product-item-leave-active {
+    opacity: 0;
+    transform: translateY(10px);
+}

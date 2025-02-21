@@ -1,0 +1,266 @@
+.container-fluid {
+    padding: 0 15px;
+}
+
+.bg-card {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.card {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+
+
+.text-end img {
+    width: 24px;
+    cursor: pointer;
+}
+
+.text-end img:hover {
+    opacity: 0.5;
+    transition: linear 0.2s;
+}
+
+
+
+
+h2 {
+    font-size: 32px;
+    margin: 0.2em 0;
+}
+
+.modal-switch {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.toggleFilter {
+    width: 0;
+    display: inline-block;
+    background-color: var(--orange);
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.4s cubic-bezier(0, 0, 0.25, 1);
+}
+
+.option-label {
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid var(--black);
+    width: 85px;
+    padding: 15px 0;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.4s;
+    margin-right: 10px;
+    background-color: #4DA0B0;
+    border-radius: 5px;
+}
+
+.toggle-container {
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    margin: 2em 0;
+}
+
+.toggle-container input[type="radio"] {
+    visibility: hidden;
+    position: absolute;
+    height: 100%;
+}
+
+.toggle-container input[type="radio"]#confirm:checked~label[for="confirm"] {
+    color: white;
+    border: 1px solid var(--orange);
+}
+
+.toggle-container input[type="radio"]#confirm:checked~.toggleFilter {
+    left: 0;
+    opacity: 1;
+    width: 87px;
+}
+
+.toggle-container input[type="radio"]#cancel:checked~label[for="cancel"] {
+    color: white;
+    border: 1px solid var(--orange);
+}
+
+.toggle-container input[type="radio"]#cancel:checked~.toggleFilter {
+    left: 100px;
+    width: 87px;
+    opacity: 1;
+}
+
+.modal-box1,
+.modal-box {
+    position: fixed;
+    border: 0.5px solid;
+    width: 40%;
+    padding: 50px;
+    border-radius: 10px;
+    top: 50%;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: linear 0.5s;
+    display: block;
+}
+
+.modal-switch a {
+    text-decoration: none;
+    color: #4DA0B0;
+}
+
+.modal-switch label:hover {
+    background-color: #1e869a;
+}
+
+.modal-box h2 {
+    font-size: 12px;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+/* Ẩn nút tăng/giảm trên tất cả các trình duyệt */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ẩn nút tăng/giảm trên Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-quantity i {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px 5px 0 5px;
+}
+
+.item-quantity i {
+    position: relative;
+}
+
+.item-quantity i:hover {
+    color: #cccccc;
+    transform: scale(1.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+.table-responsive {
+    text-align: center;
+}
+
+.delete__product {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.delete__product:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    /* Định dạng cơ bản cho checkbox */
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    /* Loại bỏ giao diện mặc định */
+    -webkit-appearance: none;
+    /* Loại bỏ giao diện trên Webkit */
+    background-color: white;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    /* Khi checkbox được chọn */
+    background-color: gray;
+    border-color: gray;
+}
+
+input[type="checkbox"]:checked::after {
+    /* Thêm dấu kiểm (optional) */
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-box1 h2 {
+    font-size: 18px;
+
+}
+
+.imgnocart {
+    width: 30%;
+}
+
+.cart-img {
+    display: flex;
+    justify-content: center;
+}
+
+
+.heading-cart {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.heading-cart i {
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+.btn-warning {
+    background-color: #4d8076;
+    color: white;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #579085;
+    transition: linear 0.5s;
+}

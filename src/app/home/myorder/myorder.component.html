@@ -1,0 +1,87 @@
+<header class="card-header">Trang chủ / Đơn hàng của tôi </header>
+
+<div class="container mg-top">
+    <a [routerLink]="['home']" class="cbhome btn btn-warning" data-abc="true"> <i
+            class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i> Trở
+        về trang
+        chủ</a>
+    <article class="card" *ngFor="let order of orders; let i = index">
+        <div *ngIf="orders.length === 0" class="cart-img"> <img class="imgnocart" src="./images/imagenocart.jpg" alt="">
+        </div>
+
+        <div class="card-body">
+            <h6>Đơn hàng thứ {{i + 1}}:</h6>
+            <article class="card">
+                <div class="card-body row">
+                    <div class="col"> <strong>Thời gian giao hàng dự kiến</strong> <br>{{ addDays(order.ngayLap, 3) }}
+                    </div>
+                    <div class="col"> <strong>Giao hàng bởi:</strong> <br> {{order.tenNguoiNhan}}, | <i
+                            class="fa fa-phone"></i>
+                        <a class="tel" href="tel:+0384867195">+0384867195</a>
+                    </div>
+                    <div class="col"> <strong>Trạng thái:</strong> <br> {{ getStatusText(order.tinhTrang.tinhTrang) }}
+                    </div>
+                    <div class="col"> <strong>Mã đơn hàng:</strong> <br># {{order.maDonHang}}</div>
+                </div>
+            </article>
+            <div class="track">
+                <div class="step " [ngClass]="{'active': order.tinhTrang.idTinhTrang >= 1}"> <span class="icon"> <i
+                            class="fa fa-check"></i> </span> <span class="text">Đơn
+                        hàng đã được xác nhận</span> </div>
+                <div class="step" [ngClass]="{'active': order.tinhTrang.idTinhTrang >= 2}"> <span class="icon"> <i
+                            class="fa fa-user"></i> </span> <span class="text">
+                        Người bán đang chuẩn bị hàng</span> </div>
+                <div class="step" [ngClass]="{'active': order.tinhTrang.idTinhTrang >= 3}"> <span class="icon"> <i
+                            class="fa fa-truck"></i> </span> <span class="text">
+                        Đang vận
+                        chuyển </span> </div>
+                <div class="step" [ngClass]="{'active': order.tinhTrang.idTinhTrang >= 4}"> <span class="icon"> <i
+                            class="fa fa-box"></i> </span> <span class="text">Giao
+                        hàng
+                        thành công</span> </div>
+            </div>
+            <hr>
+            <ul class="row g-3" *ngFor="let item of order.items">
+                <li class="itemcenter col-2 col-md-2 col-lg-2">
+                    <img [src]="item.linkMauAnhSP" class="img-sm border" alt="Product image">
+                </li>
+                <li class="itemcenter col-2 col-md-2 col-lg-2">
+                    <p class="title">{{item.tenSanPham}}</p>
+                </li>
+                <li class="itemcenter col-2 col-md-2 col-lg-2">
+                    <p class="title">{{item.dungLuong}}</p>
+                </li>
+                <li class="itemcenter col-2 col-md-2 col-lg-2">
+                    <p class="title">{{item.mauSac}}</p>
+                </li>
+                <li class="itemcenter col-2 col-md-2 col-lg-2">
+                    <p class="title">số lượng:{{item.soLuong}}</p>
+                </li>
+                <li class="itemcenter col-2 col-md-2 col-lg-2">
+                    <span class="text-muted">{{item.donGia | customCurrency}}</span>
+                    <button
+                        *ngIf="order.tinhTrang.tinhTrang === 'Processing' || order.tinhTrang.tinhTrang === 'Pending'"
+                        type="button" class="btn btn-danger" (click)="cancelOrder(order.idDdh)">
+                        Huỷ đơn hàng
+                    </button>
+
+                </li>
+
+            </ul>
+            <hr>
+        </div>
+
+    </article>
+    <div class="modal-box" *ngIf="showModal">
+        <div class="modal-switch">
+            <h2>Bạn có muốn huỷ đơn hàng này sản phẩm này?</h2>
+            <div class="toggle-container">
+                <input type="radio" name="choice" id="confirm" (click)="confirmCancelOrder()" />
+                <label class="option-label" for="confirm">Yes</label>
+                <input type="radio" name="choice" id="cancel" checked (click)="cancelModal()" />
+                <label class="option-label" for="cancel">No</label>
+                <span class="toggleFilter"></span>
+            </div>
+        </div>
+    </div>
+</div>

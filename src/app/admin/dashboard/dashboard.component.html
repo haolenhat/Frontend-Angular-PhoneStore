@@ -1,0 +1,1124 @@
+<app-editform [selectedUser]="selectedUser" (cancelEdit)="onCancelEdit()"
+    (userUpdated)="onUserUpdated($event)"></app-editform>
+<section id="sidebar">
+    <a href="#" class="brand">
+
+        <i class='bx bxs-smile'></i>
+        <span class="text">Admin Nin Store</span>
+    </a>
+    <ul class="side-menu top">
+        <li [ngClass]="{ 'active': selectedItem === 'dashboard' }">
+            <a href="#" (click)="selectItem('dashboard'); showDashboard($event)">
+                <i class='bx bxs-user-account'></i>
+                <span class="text">Quản lí danh sách người dùng</span>
+            </a>
+        </li>
+        <li [ngClass]="{ 'active': selectedItem === 'store' }">
+            <a href="#" (click)="selectItem('store'); showMyStore($event)">
+                <i class='bx bxs-folder-open'></i>
+                <span class="text">Quản lí danh mục sản phẩm</span>
+            </a>
+        </li>
+        <li [ngClass]="{ 'active': selectedItem === 'message' }">
+            <a href="#" (click)="selectItem('message'); showMyProduct($event)">
+                <i class='bx bx-task'></i>
+                <span class="text">Quản lí chi tiết sản phẩm</span>
+            </a>
+        </li>
+        <li [ngClass]="{ 'active': selectedItem === 'analytics' }">
+            <a href="#" (click)="selectItem('analytics'); showVoucherProduct($event)">
+                <i class='bx bx-wallet'></i>
+                <span class="text">Quản lí voucher</span>
+            </a>
+        </li>
+        <li [ngClass]="{ 'active': selectedItem === 'order' }">
+            <a href="#" (click)="selectItem('order'); showOrderProduct($event)">
+                <i class='bx bxs-shopping-bag-alt'></i>
+                <span class="text">Quản lí Đơn hàng</span>
+            </a>
+        </li>
+
+
+        <li [ngClass]="{ 'active': selectedItem === 'team' }">
+            <a href="https://my.payos.vn/login" (click)="selectItem('team')">
+                <i class='bx bxs-right-arrow-circle'></i>
+                <span class="text">Trang thông tin doanh thu</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="side-menu">
+
+        <li>
+            <a (click)="logout()" class=" logout">
+                <i class='bx bxs-log-out-circle'></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section id="content">
+    <nav>
+        <i class='bx bx-menu' (click)="toggleSidebar()"></i>
+        <a href="#" class="nav-link">Categories</a>
+        <form action="#">
+
+        </form>
+
+
+        <p class="name_user" *ngIf="userName">Xin chào! {{userName}}</p>
+        <div class="profile">
+            <img src="/images/ms.png" />
+        </div>
+
+    </nav>
+
+    <main *ngIf="showDashboardContent">
+        <div class="table-data">
+            <div class="order">
+
+                <div class="head-table">
+                    <h3>Danh sách người dùng</h3>
+                    <div class="icon-head-table">
+                        <input type="search" [formControl]="searchControl" placeholder="Tìm kiếm user" />
+                        <i class='bx bx-filter'></i>
+                    </div>
+
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên người dùng</th>
+                            <th>Địa chỉ email</th>
+                            <th>Ngày đăng ký</th>
+                            <th>Quyền</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>{{ user.idKh }}</td>
+                            <td>{{ user.tenKh }}</td>
+                            <td>{{ user.mail }}</td>
+                            <td>{{ user.ngayTao | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ user.role }}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success"
+                                    (click)="editUser(user)">Sửa</button>
+                                <button type="button" class="btn btn-outline-danger"
+                                    (click)="confirmDelete(user)">Xoá</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </main>
+
+
+    <main *ngIf="showMyStoreContent">
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <div class="box-icon " (click)="toggleAddProductForm()">
+                        <span>Thêm một sản phẩm mới</span>
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAXVJREFUaEPtmEtOAzEMhr8eAVUgqBBnYNm7sGABUu9UoYpFj9Ku2fQGPKQKwRVAkaaoDXQ88cQpqZxNF3nYn//Y6XhA5WNQuf84wKEV1CpwDjwAY2BoDPEBLIF74D22pQEIzj8B4bfkeAaugc9toxqAOXBT0vMtW1Ng0hfgDbg4EEBQ4aovwFfkvEbFFP5WexrjDpASfsAViAOmvUIm+0rmgAM0V2En6EepgCS1NL+vyJjs+0sByZA0Xz1ADJhY9n99oyS/A1KEU+cdoO2/l0UOVH+Fqk9iB4giULwKuQKugPDNKz1kqQ+XtP7f5IDkqCp3LB4yraMOsImAdMdfgVHuMHc8L9i+lBpbEsAjcNvRYO5lM+CuL8ApsALOcnsnnPfSNHdDt/pnaJI4bA5XaNNePzEGCQ4vmqbuOralBTD2ufvxDtA9VjYrj1KB0nVe01xrrUKl63x2gNJ1PjtA6TpvAmBTMgxO7UVv4E/ykQ6QHLLMG74BTaZyMalWQZAAAAAASUVORK5CYII=" />
+                    </div>
+                    <div class="icon-head-table"> <input type="search" placeholder="Tìm kiếm sản phẩm"
+                            [formControl]="searchControl" /> </div>
+
+                    <div class="box-icon " (click)="toggleDelCategoryForm()">
+                        <span>Xoá danh mục</span>
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAXVJREFUaEPtmEtOAzEMhr8eAVUgqBBnYNm7sGABUu9UoYpFj9Ku2fQGPKQKwRVAkaaoDXQ88cQpqZxNF3nYn//Y6XhA5WNQuf84wKEV1CpwDjwAY2BoDPEBLIF74D22pQEIzj8B4bfkeAaugc9toxqAOXBT0vMtW1Ng0hfgDbg4EEBQ4aovwFfkvEbFFP5WexrjDpASfsAViAOmvUIm+0rmgAM0V2En6EepgCS1NL+vyJjs+0sByZA0Xz1ADJhY9n99oyS/A1KEU+cdoO2/l0UOVH+Fqk9iB4giULwKuQKugPDNKz1kqQ+XtP7f5IDkqCp3LB4yraMOsImAdMdfgVHuMHc8L9i+lBpbEsAjcNvRYO5lM+CuL8ApsALOcnsnnPfSNHdDt/pnaJI4bA5XaNNePzEGCQ4vmqbuOralBTD2ufvxDtA9VjYrj1KB0nVe01xrrUKl63x2gNJ1PjtA6TpvAmBTMgxO7UVv4E/ykQ6QHLLMG74BTaZyMalWQZAAAAAASUVORK5CYII=" />
+                    </div>
+                    <div class="box-icon " (click)="toggleAddCategoryForm()">
+                        <span>Thêm danh mục</span>
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAXVJREFUaEPtmEtOAzEMhr8eAVUgqBBnYNm7sGABUu9UoYpFj9Ku2fQGPKQKwRVAkaaoDXQ88cQpqZxNF3nYn//Y6XhA5WNQuf84wKEV1CpwDjwAY2BoDPEBLIF74D22pQEIzj8B4bfkeAaugc9toxqAOXBT0vMtW1Ng0hfgDbg4EEBQ4aovwFfkvEbFFP5WexrjDpASfsAViAOmvUIm+0rmgAM0V2En6EepgCS1NL+vyJjs+0sByZA0Xz1ADJhY9n99oyS/A1KEU+cdoO2/l0UOVH+Fqk9iB4giULwKuQKugPDNKz1kqQ+XtP7f5IDkqCp3LB4yraMOsImAdMdfgVHuMHc8L9i+lBpbEsAjcNvRYO5lM+CuL8ApsALOcnsnnPfSNHdDt/pnaJI4bA5XaNNePzEGCQ4vmqbuOralBTD2ufvxDtA9VjYrj1KB0nVe01xrrUKl63x2gNJ1PjtA6TpvAmBTMgxO7UVv4E/ykQ6QHLLMG74BTaZyMalWQZAAAAAASUVORK5CYII=" />
+                    </div>
+                    <div class="box-icon " (click)="toggleEditCategoryForm()">
+                        <span>Sửa danh mục</span>
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAXVJREFUaEPtmEtOAzEMhr8eAVUgqBBnYNm7sGABUu9UoYpFj9Ku2fQGPKQKwRVAkaaoDXQ88cQpqZxNF3nYn//Y6XhA5WNQuf84wKEV1CpwDjwAY2BoDPEBLIF74D22pQEIzj8B4bfkeAaugc9toxqAOXBT0vMtW1Ng0hfgDbg4EEBQ4aovwFfkvEbFFP5WexrjDpASfsAViAOmvUIm+0rmgAM0V2En6EepgCS1NL+vyJjs+0sByZA0Xz1ADJhY9n99oyS/A1KEU+cdoO2/l0UOVH+Fqk9iB4giULwKuQKugPDNKz1kqQ+XtP7f5IDkqCp3LB4yraMOsImAdMdfgVHuMHc8L9i+lBpbEsAjcNvRYO5lM+CuL8ApsALOcnsnnPfSNHdDt/pnaJI4bA5XaNNePzEGCQ4vmqbuOralBTD2ufvxDtA9VjYrj1KB0nVe01xrrUKl63x2gNJ1PjtA6TpvAmBTMgxO7UVv4E/ykQ6QHLLMG74BTaZyMalWQZAAAAAASUVORK5CYII=" />
+                    </div>
+
+
+                    <div class="box-icon">
+                        <span>Lọc</span>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="onCategoryChange($event)">
+                            <option value="0" selected>Tất cả danh mục</option>
+                            <option *ngFor="let category of productCategories" [value]="category.idDm">{{ category.tenDm
+                                }}</option>
+                        </select>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Thông tin sản phẩm</th>
+                            <th>Trọng lượng</th>
+                            <th>Màn hình</th>
+                            <th>Bộ nhớ</th>
+                            <th>Thẻ SIM</th>
+                            <th>Hệ điều hành</th>
+                            <th>Cổng sạc</th>
+                            <th>Camera</th>
+                            <th>Bảo mật</th>
+                            <th>Pin</th>
+                            <th>Bảo hành</th>
+                            <th>Danh mục</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of filteredProducts">
+                            <td> <img [src]="product.linkAnh" alt="{{ product.tenSp }}"> </td>
+                            <td>{{ product.tenSp }}</td>
+                            <td>
+                                <p class="inforsp">{{ product.thongTinSp }}</p>
+                            </td>
+                            <td>{{ product.trongLuong }}</td>
+                            <td>{{ product.manHinh }}</td>
+                            <td>{{ product.boNho }}</td>
+                            <td>{{ product.theSim }}</td>
+                            <td>{{ product.heDieuHanh }}</td>
+                            <td>{{ product.congSac }}</td>
+                            <td>{{ product.camera }}</td>
+                            <td>{{ product.baoMat }}</td>
+                            <td>{{ product.pin }}</td>
+                            <td>{{ product.baoHanh }}</td>
+                            <td>{{ product.productCategory.tenDm }}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success"
+                                    (click)="editProductCategory(product.idSp)">Sửa</button>
+
+                                <button type="button" class="btn btn-outline-success"
+                                    (click)="prepareAddProductOption(product)">Thêm Option</button>
+                                <button (click)="confirmDeleteProduct(product.idSp)" type="button"
+                                    class="btn btn-outline-danger">Xoá</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+    <main *ngIf="showProductDetailContent">
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Chi tiết sản phẩm</h3>
+                    <div class="icon-head-table">
+                        <input type="search" placeholder="Tìm kiếm sản phẩm" [formControl]="searchControl" />
+                        <i class="bx bx-filter"></i>
+                    </div>
+
+                    <div class="box-icon">
+                        <span>Lọc</span>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="onCategoryChange($event)">
+                            <option value="0" selected>Tất cả danh mục</option>
+                            <option *ngFor="let category of productCategories" [value]="category.idDm">
+                                {{ category.tenDm }}
+                            </option>
+                        </select>
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAMBJREFUaEPtlsEOwyAUw9r//+justMOHYqDKop7T+DZgHoei3/n4vs/HOBpgxrQACTgEYIAcVwDGCEs0AAEiONbGLgwJlZwC3nEgAMwAfd/zFsYgADnxkcMzN0BbHcACBDHiYH28xrtJQp9sTnAz/mJYEahtxjAF7BRQAw01scdDoARwoIZBv49r9U1q2WDr1N1zWqZAwT3YYaBYBt5xAFydp2kBjoc8xYN5Ow6SQ10OOYtGsjZdZIa6HDMW5Y38AF6Cgwx5qZ0PwAAAABJRU5ErkJggg==" />
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Ảnh màu sản phẩm</th>
+                            <th>Màu sắc</th>
+                            <th>Dung lượng</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Khuyến mãi</th>
+                            <th>Giá sau khuyến mãi</th>
+                            <th>Số lượng</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let product of filteredProducts">
+
+
+
+
+                        <tr *ngFor="let option of product.productOptions">
+                            <td>{{ product.tenSp }}</td>
+                            <td>
+                                <img [src]="option.linkMauAnhSp" alt="{{ option.mauSac }}" />
+                            </td>
+                            <td>{{ option.mauSac }}</td>
+                            <td>{{ option.dungLuong }}</td>
+                            <td><span class="text-price">{{ option.giaSp| customCurrency }}</span></td>
+                            <td>{{ option.khuyenMai }}%</td>
+                            <td>{{ option.giaSauKhuyenMai | customCurrency }}</td>
+                            <td>{{ option.soLuong }}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success"
+                                    (click)="editProductOption(option)">
+                                    Sửa
+                                </button>
+                                <button (click)="confirmDeleteProductOption(option.idTuyChon)" type="button"
+                                    class="btn btn-outline-danger">
+                                    Xoá
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+    <main *ngIf="showVoucherContent">
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Chi tiết Voucher</h3>
+                    <div class="box-icon " (click)="openAddVoucherForm()">
+                        <span>Thêm một Voucher mới</span>
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAXVJREFUaEPtmEtOAzEMhr8eAVUgqBBnYNm7sGABUu9UoYpFj9Ku2fQGPKQKwRVAkaaoDXQ88cQpqZxNF3nYn//Y6XhA5WNQuf84wKEV1CpwDjwAY2BoDPEBLIF74D22pQEIzj8B4bfkeAaugc9toxqAOXBT0vMtW1Ng0hfgDbg4EEBQ4aovwFfkvEbFFP5WexrjDpASfsAViAOmvUIm+0rmgAM0V2En6EepgCS1NL+vyJjs+0sByZA0Xz1ADJhY9n99oyS/A1KEU+cdoO2/l0UOVH+Fqk9iB4giULwKuQKugPDNKz1kqQ+XtP7f5IDkqCp3LB4yraMOsImAdMdfgVHuMHc8L9i+lBpbEsAjcNvRYO5lM+CuL8ApsALOcnsnnPfSNHdDt/pnaJI4bA5XaNNePzEGCQ4vmqbuOralBTD2ufvxDtA9VjYrj1KB0nVe01xrrUKl63x2gNJ1PjtA6TpvAmBTMgxO7UVv4E/ykQ6QHLLMG74BTaZyMalWQZAAAAAASUVORK5CYII=" />
+                    </div>
+                    <div class="icon-head-table">
+                        <input type="search" placeholder="Tìm kiếm voucher" [formControl]="searchControl" />
+                        <i class='bx bx-filter'></i>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Voucher</th>
+                            <th>Mô tả</th>
+                            <th>Giá trị</th>
+                            <th>Loại Voucher</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Số lượng</th>
+                            <th>Tuỳ chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let voucher of filteredVouchers">
+                            <td>{{ voucher.maVoucher }}</td>
+                            <td>{{ voucher.moTa }}</td>
+                            <td>{{ voucher.giaTri }}</td>
+                            <td>{{ voucher.loaiVoucher }}</td>
+                            <td>{{ formatDateToDDMMYYYY(voucher.ngayBatDau) }}</td>
+                            <td>{{ formatDateToDDMMYYYY(voucher.ngayKetThuc) }} {{ getRemainingDays(voucher.ngayKetThuc)
+                                }}</td>
+                            <td>{{ voucher.soLuong }}</td>
+                            <td>
+                                <button (click)="editVoucher(voucher)" type="button" class="btn btn-outline-success">
+                                    Sửa
+                                </button>
+                                <button (click)="deleteVoucher(voucher.idVoucher)" type="button"
+                                    class="btn btn-outline-danger">
+                                    Xoá
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+
+    <main *ngIf="showOrderContent">
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Chi tiết đơn hàng</h3>
+                    <div class="icon-head-table">
+                        <input type="search" placeholder="Tìm kiếm đơn hàng" [formControl]="searchControl" />
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <select class="form-select form-select1" aria-label="Default select example"
+                        (change)="filterByStatus($event)">
+                        <option value="all" selected>Tất cả đơn hàng</option>
+                        <option value="Pending">Đơn mới</option>
+                        <option value="Processing">Đang gói hàng</option>
+                        <option value="Shipped">Đang vận chuyển</option>
+                        <option value="Delivered">Đã giao hàng</option>
+                        <option value="Cancel">Đã huỷ</option>
+                        <option value="Return">Đã trả hàng</option>
+                    </select>
+                    <p>{{ displayedOrdersLabel }}: {{ displayedOrdersCount }} đơn</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Ảnh</th>
+                            <th>Màu</th>
+                            <th>Số lượng</th>
+                            <th>Phí ship</th>
+                            <th>Tổng giá</th>
+                            <th>Ngày đặt</th>
+                            <th>Địa chỉ</th>
+                            <th>Tình trạng</th>
+                            <th>Tuỳ chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of filteredOrders">
+                            <td>{{ order.maDonHang }}</td>
+                            <td>{{ order.tenKhachHang }}</td>
+                            <td>
+                                <ul>
+                                    <li class="limb" *ngFor="let item of order.items">{{ item.tenSanPham }}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let item of order.items">
+                                        <img [src]="item.linkMauAnhSP" alt="">
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="limb" *ngFor="let item of order.items">{{ item.mauSac }}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="limb" *ngFor="let item of order.items">{{ item.soLuong }}</li>
+
+                                </ul>
+                            </td>
+                            <td>{{ order.phiShip | customCurrency }}</td>
+                            <td>{{ order.tongGia | customCurrency }}</td>
+                            <td>{{ order.ngayLap | date: 'dd/MM/yyyy' }}</td>
+                            <td>
+                                <div class="box-location">
+                                    <div *ngIf="order.showLocation" class="wrapper1">
+                                        <ol class="a111" reversed start="20">
+                                            <li class="li1">
+                                                <span>Tên người nhận</span>
+                                                <span>{{ order.tenNguoiNhan }}</span>
+                                            </li>
+                                            <li class="li1">
+                                                <span>Xã phường</span>
+                                                <span>{{ order.phuongXa }}</span>
+                                            </li>
+                                            <li class="li1">
+                                                <span>Quận huyện</span>
+                                                <span>{{ order.quanHuyen }}</span>
+                                            </li>
+                                            <li class="li1">
+                                                <span>Tỉnh thành phố</span>
+                                                <span>{{ order.tinhThanh }}</span>
+                                            </li>
+                                            <li class="li1">
+                                                <span>Địa chỉ chi tiết</span>
+                                                <span>{{ order.diaChi }}</span>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                <button (click)="toggleLocation(order)" type="button" class="btn btn-success">
+                                    {{ order.showLocation ? 'Đóng địa chỉ' : 'Xem địa chỉ' }}
+                                </button>
+                            </td>
+                            <td>
+                                <div *ngIf="order.isEditing">
+                                    <select [(ngModel)]="order.tinhTrang.tinhTrang" class="form-select">
+                                        <option value="Pending">Đơn mới</option>
+                                        <option value="Processing">Đang gói hàng</option>
+                                        <option value="Shipped">Đang vận chuyển</option>
+                                        <option value="Delivered">Đã giao hàng</option>
+                                        <option value="Cancel">Đã huỷ</option>
+                                        <option value="Return">Đã trả hàng</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="!order.isEditing">
+                                    {{ getStatusLabel(order.tinhTrang.tinhTrang) }}
+                                </div>
+                            </td>
+                            <td>
+                                <button *ngIf="!order.isEditing" (click)="editOrder(order)" type="button"
+                                    class="btn btn-outline-success">
+                                    Cập nhật trạng thái
+                                </button>
+                                <button *ngIf="order.isEditing" (click)="saveOrder(order)" type="button"
+                                    class="btn btn-outline-primary">
+                                    Lưu trạng thái
+                                </button>
+                                <!-- <button (click)="deleteOrder(order)" type="button" class="btn btn-outline-danger">
+                                    Xoá đơn hàng
+                                </button> -->
+                                <button type="button" class="btn btn-secondary" (click)="toggleEmailForm(order)">Gửi
+                                    phản hồi<i class='bx bx-mail-send'></i></button>
+                                <div class="wrapper" *ngIf="order.showEmailForm">
+                                    <form class="form">
+                                        <div class="secondaryTitle title">Vui lòng nhập nội dung.</div>
+                                        <textarea class="message formEntry" placeholder="Message"
+                                            [(ngModel)]="emailContent" name="emailContent"></textarea>
+                                        <button class="submit formEntry" type="button"
+                                            (click)="submitEmail(order)">Submit</button>
+                                        <button class="submit formEntry" type="button"
+                                            (click)="toggleEmailForm(order)">Close</button>
+                                    </form>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+</section>
+
+
+<div class="modal-box" *ngIf="isDeleteModalVisible">
+    <div class="modal-switch">
+        <h2>Bạn có muốn xóa?</h2>
+        <div class="toggle-container"> <input type="radio" name="choice" id="confirm" (click)="deleteUser()" /> <label
+                class="option-label" for="confirm">Yes</label> <input type="radio" name="choice" id="cancel"
+                (click)="closeDeleteModal()" checked /> <label class="option-label" for="cancel">No</label> <span
+                class="toggleFilter"></span> </div>
+    </div>
+</div>
+
+<!-- Form thêm danh mục -->
+<div *ngIf="isAddCategoryFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Thêm danh mục &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="addCategory()" id="contact_form">
+            <div class="subject">
+                <label for="subject"></label>
+                <select placeholder="Tất cả danh mục hiện có" name="subject" id="subject_input" required>
+                    <option disabled hidden selected>Tất cả danh mục hiện có</option>
+                    <option *ngFor="let category of productCategories">{{ category.tenDm }}</option>
+                </select>
+            </div>
+            <div class="telephone">
+                <label for="name"></label>
+                <input type="text" placeholder="Nhập danh mục cần thêm" [formControl]="newCategoryName" required>
+            </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Thêm" id="form_button" />
+                </div>
+                <div (click)="toggleAddCategoryForm()" class="submit">
+                    <input type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Form sửa danh mục -->
+<div *ngIf="isEditCategoryFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Sửa danh mục &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="updateCategory()" id="contact_form">
+            <div class="subject">
+                <label for="subject"></label>
+                <select placeholder="Tất cả danh mục hiện có" name="subject" id="subject_input"
+                    (change)="onCategorySelect($event)" required>
+                    <option disabled hidden selected>Tất cả danh mục hiện có</option>
+                    <option *ngFor="let category of productCategories" [value]="category.idDm">{{ category.tenDm }}
+                    </option>
+                </select>
+            </div>
+            <div class="telephone"> <label for="name"></label> <input type="text" placeholder="Nhập danh mục cần thêm"
+                    [formControl]="newCategoryName" required> </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Sửa" id="form_button" />
+                </div>
+                <div (click)="toggleEditCategoryForm()" class="submit">
+                    <input type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Form xoá danh muc -->
+
+<div *ngIf="isDelCategoryFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Xoá danh mục &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="deleteCategory()" id="contact_form">
+            <div class="subject">
+                <label for="subject"></label>
+                <select placeholder="Tất cả danh mục hiện có" name="subject" id="subject_input"
+                    (change)="onCategorySelect($event)" required>
+                    <option disabled hidden selected>Chọn danh mục cần xoá</option>
+                    <option *ngFor="let category of productCategories" [value]="category.idDm">{{ category.tenDm }}
+                    </option>
+                </select>
+            </div>
+            <div class="telephone">
+                <label for="name"></label>
+                <input type="text" placeholder="Xoá danh mục đồng nghĩa với việc xoá các sản phẩm thuộc danh mục đó"
+                    [formControl]="newCategoryName" required>
+            </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Xoá" id="form_button" />
+                </div>
+                <div (click)="toggleDelCategoryForm()" class="submit">
+                    <input type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Form sửa sản phẩm theo danh mục -->
+<div *ngIf="isEditProductCategoryFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Sửa sản phẩm theo danh mục &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="updateProduct()" id="contact_form">
+            <div class="subject">
+                <label for="subject_input">Danh mục:</label>
+                <select name="subject" id="subject_input" (change)="onProductCategoryChange($event)" required>
+                    <option disabled hidden selected>Chọn danh mục cần thay đổi</option>
+                    <option *ngFor="let category of productCategories" [value]="category.tenDm">{{ category.tenDm }}
+                    </option>
+                </select>
+            </div>
+            <div class="telephone">
+                <label for="productCategoryName">Danh mục:</label>
+                <input id="productCategoryName" type="text" placeholder="Danh mục" [formControl]="productCategoryName"
+                    required>
+            </div>
+            <div class="telephone">
+                <label for="productName">Tên sản phẩm:</label>
+                <input id="productName" type="text" placeholder="Tên sản phẩm" [formControl]="productName" required>
+            </div>
+            <div class="telephone">
+                <label for="productOS">Hệ điều hành:</label>
+                <input id="productOS" type="text" placeholder="Hệ Điều hành" [formControl]="productOS" required>
+            </div>
+            <div class="telephone">
+                <label for="thongTinSp">Thông tin sản phẩm:</label>
+                <input id="thongTinSp" type="text" placeholder="Thông tin sản phẩm" [formControl]="productInfo"
+                    required>
+            </div>
+            <div class="telephone">
+                <label for="trongLuong">Trọng lượng:</label>
+                <input id="trongLuong" type="text" placeholder="Trọng lượng" [formControl]="productWeight" required>
+            </div>
+            <div class="telephone">
+                <label for="manHinh">Màn hình:</label>
+                <input id="manHinh" type="text" placeholder="Màn hình" [formControl]="productScreen" required>
+            </div>
+            <div class="telephone">
+                <label for="boNho">Bộ nhớ:</label>
+                <input id="boNho" type="text" placeholder="Bộ nhớ" [formControl]="productMemory" required>
+            </div>
+            <div class="telephone">
+                <label for="theSim">Thẻ SIM:</label>
+                <input id="theSim" type="text" placeholder="Thẻ SIM" [formControl]="productSim" required>
+            </div>
+            <div class="telephone">
+                <label for="congSac">Cổng sạc:</label>
+                <input id="congSac" type="text" placeholder="Cổng sạc" [formControl]="productCharger" required>
+            </div>
+            <div class="telephone">
+                <label for="camera">Camera:</label>
+                <input id="camera" type="text" placeholder="Camera" [formControl]="productCamera" required>
+            </div>
+            <div class="telephone">
+                <label for="baoMat">Bảo mật:</label>
+                <input id="baoMat" type="text" placeholder="Bảo mật" [formControl]="productSecurity" required>
+            </div>
+            <div class="telephone">
+                <label for="pin">Pin:</label>
+                <input id="pin" type="text" placeholder="Pin" [formControl]="productBattery" required>
+            </div>
+            <div class="telephone">
+                <label for="baoHanh">Bảo hành:</label>
+                <input id="baoHanh" type="text" placeholder="Bảo hành" [formControl]="productWarranty" required>
+            </div>
+            <div class="telephone">
+                <label for="linkAnh">Chọn ảnh sản phẩm:</label>
+                <input id="linkAnh" type="file" (change)="uploadImage1($event)">
+                <div *ngIf="getFormControl('linkAnh').invalid && getFormControl('linkAnh').touched" class="error">
+                    Link ảnh là bắt buộc.
+                </div>
+            </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Sửa" id="form_button" />
+                </div>
+                <div class="submit">
+                    <input (click)="toggleEditProductCategoryForm()" type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal-box" *ngIf="isDeleteProductVisible">
+    <div class="modal-switch">
+        <h2>Bạn có muốn xóa?</h2>
+        <div *ngIf="orderDetails.length > 0">
+            <h3>Sản phẩm đang có đơn hàng chi tiết như sau:</h3>
+            <div *ngFor="let orderDetail of orderDetails">
+                <span><strong>Mã đơn hàng:</strong> {{ orderDetail.idDdh }}</span><br>
+                <span><strong>Số lượng mua:</strong> {{ orderDetail.soLuongMua }}</span><br>
+                <span><strong>Đơn giá:</strong> {{ orderDetail.donGia | currency }}</span><br>
+                <span><strong>Màu sắc:</strong> {{ orderDetail.tuyChonSanPham.mauSac }}</span><br>
+                <span><strong>Dung lượng:</strong> {{ orderDetail.tuyChonSanPham.dungLuong }}</span><br>
+                <span><strong>Giá sản phẩm:</strong> {{ orderDetail.tuyChonSanPham.giaSp | currency }}</span><br>
+                <span><strong>Khuyến mãi:</strong> {{ orderDetail.tuyChonSanPham.khuyenMai | currency }}</span><br>
+                <span><strong>Số lượng:</strong> {{ orderDetail.tuyChonSanPham.soLuong }}</span><br>
+                <img [src]="orderDetail.tuyChonSanPham.linkMauAnhSp" alt="Product Image" width="100">
+            </div>
+        </div>
+        <div *ngIf="orderDetails.length === 0">
+            <h3>Thông tin sản phẩm:</h3>
+            <div *ngFor="let option of productDetails.productOptions">
+                <span><strong>Màu sắc:</strong> {{ option.mauSac }}</span><br>
+                <span><strong>Dung lượng:</strong> {{ option.dungLuong }}</span><br>
+                <span><strong>Giá sản phẩm:</strong> {{ option.giaSp | currency }}</span><br>
+                <span><strong>Khuyến mãi:</strong> {{ option.khuyenMai | currency }}</span><br>
+                <span><strong>Số lượng:</strong> {{ option.soLuong }}</span><br>
+                <img [src]="option.linkMauAnhSp" alt="Product Option Image" width="100"><br><br>
+            </div>
+        </div>
+        <div class="toggle-container">
+            <input type="radio" name="choice" id="confirm" />
+            <label class="option-label" for="confirm" (click)="deleteProduct()">Yes</label>
+            <input type="radio" name="choice" id="cancel" (click)="toggleDelProductCategoryForm()" checked />
+            <label class="option-label" for="cancel">No</label>
+            <span class="toggleFilter"></span>
+        </div>
+    </div>
+</div>
+
+<!-- Form thêm sản phẩm -->
+<div *ngIf="isAddProductFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Thêm sản phẩm &bull;</h1>
+        <div class="underline"></div>
+        <form [formGroup]="newProduct" (ngSubmit)="addProduct()" id="contact_form">
+            <div class="telephone">
+                <label for="tenSp">Tên sản phẩm:</label>
+                <input id="tenSp" type="text" placeholder="Nhập tên sản phẩm" [formControl]="getFormControl('tenSp')"
+                    required>
+                <div *ngIf="getFormControl('tenSp').invalid && getFormControl('tenSp').touched" class="error">
+                    Tên sản phẩm là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="thongTinSp">Thông tin sản phẩm:</label>
+                <input id="thongTinSp" type="text" placeholder="Nhập thông tin sản phẩm"
+                    [formControl]="getFormControl('thongTinSp')" required>
+                <div *ngIf="getFormControl('thongTinSp').invalid && getFormControl('thongTinSp').touched" class="error">
+                    Thông tin sản phẩm là bắt buộc.
+                </div>
+            </div>
+            <!-- Chọn ảnh sản phẩm chính -->
+            <div class="telephone">
+                <label for="linkAnh">Chọn ảnh sản phẩm:</label>
+                <input id="linkAnh" type="file" (change)="uploadImage($event)" required>
+                <div *ngIf="getFormControl('linkAnh').invalid && getFormControl('linkAnh').touched" class="error">
+                    Link ảnh là bắt buộc.
+                </div>
+            </div>
+
+            <div class="telephone">
+                <label for="trongLuong">Trọng lượng:</label>
+                <input id="trongLuong" type="number" placeholder="Nhập thông tin trọng lượng"
+                    [formControl]="getFormControl('trongLuong')" required>
+                <div *ngIf="getFormControl('trongLuong').invalid && getFormControl('trongLuong').touched" class="error">
+                    Trọng lượng là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="manHinh">Màn hình:</label>
+                <input id="manHinh" type="text" placeholder="Nhập thông tin màn hình"
+                    [formControl]="getFormControl('manHinh')" required>
+                <div *ngIf="getFormControl('manHinh').invalid && getFormControl('manHinh').touched" class="error">
+                    Màn hình là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="boNho">Bộ nhớ:</label>
+                <input id="boNho" type="text" placeholder="Nhập thông tin bộ nhớ"
+                    [formControl]="getFormControl('boNho')" required>
+                <div *ngIf="getFormControl('boNho').invalid && getFormControl('boNho').touched" class="error">
+                    Bộ nhớ là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="theSim">Thẻ SIM:</label>
+                <input id="theSim" type="text" placeholder="Nhập thông tin thẻ SIM"
+                    [formControl]="getFormControl('theSim')" required>
+                <div *ngIf="getFormControl('theSim').invalid && getFormControl('theSim').touched" class="error">
+                    Thẻ SIM là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="heDieuHanh">Hệ điều hành:</label>
+                <input id="heDieuHanh" type="text" placeholder="Nhập thông tin hệ điều hành"
+                    [formControl]="getFormControl('heDieuHanh')" required>
+                <div *ngIf="getFormControl('heDieuHanh').invalid && getFormControl('heDieuHanh').touched" class="error">
+                    Hệ điều hành là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="congSac">Cổng sạc:</label>
+                <input id="congSac" type="text" placeholder="Nhập thông tin cổng sạc"
+                    [formControl]="getFormControl('congSac')" required>
+                <div *ngIf="getFormControl('congSac').invalid && getFormControl('congSac').touched" class="error">
+                    Cổng sạc là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="camera">Camera:</label>
+                <input id="camera" type="text" placeholder="Nhập thông tin camera"
+                    [formControl]="getFormControl('camera')" required>
+                <div *ngIf="getFormControl('camera').invalid && getFormControl('camera').touched" class="error">
+                    Camera là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="baoMat">Bảo mật:</label>
+                <input id="baoMat" type="text" placeholder="Nhập thông tin loại bảo mật"
+                    [formControl]="getFormControl('baoMat')" required>
+                <div *ngIf="getFormControl('baoMat').invalid && getFormControl('baoMat').touched" class="error">
+                    Bảo mật là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="pin">Pin:</label>
+                <input id="pin" type="text" placeholder="Nhập dung lượng pin" [formControl]="getFormControl('pin')"
+                    required>
+                <div *ngIf="getFormControl('pin').invalid && getFormControl('pin').touched" class="error">
+                    Dung lượng pin là bắt buộc.
+                </div>
+            </div>
+            <div class="telephone">
+                <label for="baoHanh">Bảo hành:</label>
+                <input id="baoHanh" type="text" placeholder="Nhập thời gian bảo hành"
+                    [formControl]="getFormControl('baoHanh')" required>
+                <div *ngIf="getFormControl('baoHanh').invalid && getFormControl('baoHanh').touched" class="error">
+                    Thời gian bảo hành là bắt buộc.
+                </div>
+            </div>
+            <div class="subject">
+                <label for="productCategory">Danh mục:</label>
+                <select name="productCategory" id="productCategory" (change)="onCategorySelected($event)"
+                    [formControl]="getNestedFormControl('productCategory', 'idDm')" required>
+                    <option disabled hidden selected>Chọn danh mục</option>
+                    <option *ngFor="let category of productCategories" [value]="category.idDm">{{ category.tenDm }}
+                    </option>
+                </select>
+                <div *ngIf="getNestedFormControl('productCategory', 'idDm').invalid && getNestedFormControl('productCategory', 'idDm').touched"
+                    class="error"> Danh mục là bắt buộc. </div>
+            </div>
+
+            <div formArrayName="productOptions">
+                <div *ngFor="let option of productOptions.controls; let i = index" [formGroupName]="i"
+                    class="telephone box-option">
+                    <label for="mauSac{{i}}">Màu sắc:</label>
+                    <input id="mauSac{{i}}" type="text" placeholder="Nhập màu sắc" formControlName="mauSac" required>
+                    <div *ngIf="option.get('mauSac')?.invalid && option.get('mauSac')?.touched" class="error">
+                        Màu sắc là bắt buộc.
+                    </div>
+                    <label for="dungLuong{{i}}">Dung lượng:</label>
+                    <input id="dungLuong{{i}}" type="text" placeholder="Dung lượng" formControlName="dungLuong"
+                        required>
+                    <div *ngIf="option.get('dungLuong')?.invalid && option.get('dungLuong')?.touched" class="error">
+                        Dung lượng là bắt buộc.
+                    </div>
+                    <label for="linkMauAnhSp{{i}}">Chọn ảnh màu:</label> <input id="linkMauAnhSp{{i}}" type="file"
+                        (change)="uploadOptionImage($event, i)" required>
+                    <div *ngIf="option.get('linkMauAnhSp')?.invalid && option.get('linkMauAnhSp')?.touched"
+                        class="error"> Link ảnh màu là bắt buộc. </div>
+                    <div *ngIf="uploadPercent as percent"> Đang tải lên: {{ percent | async }}% </div>
+                    <label for="giaSp{{i}}">Giá sản phẩm:</label>
+                    <input id="giaSp{{i}}" type="number" placeholder="Nhập giá sản phẩm" formControlName="giaSp"
+                        required>
+                    <div *ngIf="option.get('giaSp')?.invalid && option.get('giaSp')?.touched" class="error">
+                        Giá sản phẩm là bắt buộc.
+                    </div>
+                    <label for="khuyenMai{{i}}">Khuyến mãi:</label>
+                    <input id="khuyenMai{{i}}" type="number" placeholder="Nhập % khuyến mãi" formControlName="khuyenMai"
+                        required>
+                    <div *ngIf="option.get('khuyenMai')?.invalid && option.get('khuyenMai')?.touched" class="error">
+                        Khuyến mãi là bắt buộc.
+                    </div>
+                    <label for="soLuong{{i}}">Số lượng:</label>
+                    <input id="soLuong{{i}}" type="number" placeholder="Nhập số lượng" formControlName="soLuong"
+                        required>
+                    <div *ngIf="option.get('soLuong')?.invalid && option.get('soLuong')?.touched" class="error">
+                        Số lượng là bắt buộc.
+                    </div>
+                    <button class="del-btn" type="button" (click)="removeProductOption(i)"
+                        *ngIf="productOptions.length > 1">Xóa Option</button>
+                </div>
+            </div>
+
+            <div class="submit">
+                <button type="button" (click)="addProductOption()">Thêm Option khác</button>
+            </div>
+
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Thêm" id="form_button" />
+                </div>
+                <div (click)="toggleAddProductForm()" class="submit">
+                    <input type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- Form thêm tùy chọn sản phẩm -->
+<div *ngIf="isAddProductOptionFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Thêm Tùy Chọn Sản Phẩm &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="addProductOption1()" id="contact_form">
+            <div class="telephone">
+                <label for="mauSac">Màu sắc:</label>
+                <input id="mauSac" type="text" placeholder="Màu sắc" [formControl]="optionColor" required>
+            </div>
+            <div class="telephone">
+                <label for="linkMauAnhSp">Chọn ảnh màu:</label>
+                <input id="linkMauAnhSp" type="file" (change)="uploadNewOptionImage($event)" required>
+            </div>
+            <div class="telephone">
+                <label for="dungLuong">Dung lượng:</label>
+                <input id="dungLuong" type="text" placeholder="Dung lượng" [formControl]="optionStorage" required>
+            </div>
+            <div class="telephone">
+                <label for="giaSp">Giá sản phẩm:</label>
+                <input id="giaSp" type="number" placeholder="Giá sản phẩm" [formControl]="optionPrice" required>
+            </div>
+            <div class="telephone">
+                <label for="khuyenMai">Khuyến mãi:</label>
+                <input id="khuyenMai" type="number" placeholder="Khuyến mãi" [formControl]="optionDiscount" required>
+            </div>
+            <div class="telephone">
+                <label for="soLuong">Số lượng:</label>
+                <input id="soLuong" type="number" placeholder="Số lượng" [formControl]="optionQuantity" required>
+            </div>
+
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Thêm" id="form_button" />
+                </div>
+                <div class="submit">
+                    <input (click)="toggleAddProductOptionForm()" type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Form xoá Option sản phẩm -->
+<div class="modal-box" *ngIf="isDeleteProductVisible1">
+    <div class="modal-switch">
+        <h2>Bạn có muốn xóa?</h2>
+        <div class="toggle-container">
+            <input type="radio" name="choice" id="confirm" />
+            <label class="option-label" for="confirm" (click)="deleteProductOption()">Yes</label> <input type="radio"
+                name="choice" id="cancel" (click)="toggleDelProductCategoryForm1()" checked /> <label
+                class="option-label" for="cancel">No</label>
+            <span class="toggleFilter"></span>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Form chỉnh sửa Option sản phẩm -->
+<div *ngIf="isEditProductOptionFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Chỉnh sửa Tùy Chọn Sản Phẩm &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="updateProductOption()" id="contact_form">
+            <div class="telephone">
+                <label for="mauSac">Màu sắc:</label>
+                <input id="mauSac" type="text" placeholder="Màu sắc" [formControl]="optionColor" required>
+            </div>
+            <div class="telephone">
+                <label for="linkMauAnhSp">Chọn ảnh đại diện cho màu sản phẩm:</label>
+                <input id="linkMauAnhSp" type="file" (change)="uploadNewOptionImage($event)">
+            </div>
+            <div class="telephone">
+                <label for="dungLuong">Dung lượng:</label>
+                <input id="dungLuong" type="text" placeholder="Dung lượng" [formControl]="optionStorage" required>
+            </div>
+            <div class="telephone">
+                <label for="giaSp">Giá sản phẩm:</label>
+                <input id="giaSp" type="number" placeholder="Giá sản phẩm" [formControl]="optionPrice" required>
+            </div>
+            <div class="telephone">
+                <label for="khuyenMai">Khuyến mãi:</label>
+                <input id="khuyenMai" type="number" placeholder="Khuyến mãi" [formControl]="optionDiscount" required>
+            </div>
+            <div class="telephone">
+                <label for="soLuong">Số lượng:</label>
+                <input id="soLuong" type="number" placeholder="Số lượng" [formControl]="optionQuantity" required>
+            </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Cập nhật" id="form_button" />
+                </div>
+                <div class="submit">
+                    <input (click)="toggleEditProductOptionForm()" type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Form chỉnh sửa Voucher sản phẩm -->
+<div *ngIf="isEditVoucherFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Chỉnh sửa Voucher &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="updateVoucher()" id="contact_form">
+            <div class="telephone">
+                <label for="maVoucher">Mã Voucher:</label>
+                <input id="maVoucher" type="text" placeholder="Mã Voucher" [formControl]="voucherCode" required>
+            </div>
+            <div class="telephone">
+                <label for="moTa">Mô tả:</label>
+                <input id="moTa" type="text" placeholder="Mô tả" [formControl]="voucherDescription" required>
+            </div>
+            <div class="telephone">
+                <label for="giaTri">Giá trị:</label>
+                <input id="giaTri" type="number" placeholder="Giá trị" [formControl]="voucherValue" required>
+            </div>
+            <div class="telephone">
+                <label for="loaiVoucher">Loại Voucher:</label>
+                <input id="loaiVoucher" type="text" placeholder="Loại Voucher" [formControl]="voucherType" required>
+            </div>
+            <div class="telephone">
+                <label for="ngayBatDau">Ngày bắt đầu:</label>
+                <input id="ngayBatDau" type="date" [formControl]="voucherStartDate" required>
+            </div>
+            <div class="telephone">
+                <label for="ngayKetThuc">Ngày kết thúc:</label>
+                <input id="ngayKetThuc" type="date" [formControl]="voucherEndDate" required>
+            </div>
+            <div class="telephone">
+                <label for="dieuKienSuDung">Điều kiện sử dụng:</label>
+                <input id="dieuKienSuDung" type="number" placeholder="Điều kiện sử dụng"
+                    [formControl]="voucherCondition" required>
+            </div>
+            <div class="telephone">
+                <label for="soLuong">Số lượng:</label>
+                <input id="soLuong" type="number" placeholder="Số lượng" [formControl]="voucherQuantity" required>
+            </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Cập nhật" id="form_button" />
+                </div>
+                <div class="submit">
+                    <input (click)="toggleEditVoucherForm()" type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- Form thêm Voucher mới -->
+<div *ngIf="isAddVoucherFormVisible" class="modal1">
+    <div id="container">
+        <h1>&bull;Thêm Voucher mới &bull;</h1>
+        <div class="underline"></div>
+        <form (submit)="addVoucher()" id="contact_form">
+            <div class="telephone">
+                <label for="maVoucher">Mã Voucher:</label>
+                <input id="maVoucher" type="text" placeholder="Mã Voucher" [formControl]="newVoucherCode" required>
+            </div>
+            <div class="telephone">
+                <label for="moTa">Mô tả:</label>
+                <input id="moTa" type="text" placeholder="Mô tả" [formControl]="newVoucherDescription" required>
+            </div>
+            <div class="telephone">
+                <label for="giaTri">Giá trị:</label>
+                <input id="giaTri" type="number" placeholder="Giá trị" [formControl]="newVoucherValue" required>
+            </div>
+            <div class="telephone">
+                <label for="loaiVoucher">Loại Voucher:</label>
+                <input id="loaiVoucher" type="text" placeholder="Loại Voucher" [formControl]="newVoucherType" required>
+            </div>
+            <div class="telephone">
+                <label for="ngayBatDau">Ngày bắt đầu:</label>
+                <input id="ngayBatDau" type="date" [formControl]="newVoucherStartDate" required>
+            </div>
+            <div class="telephone">
+                <label for="ngayKetThuc">Ngày kết thúc:</label>
+                <input id="ngayKetThuc" type="date" [formControl]="newVoucherEndDate" required>
+            </div>
+            <div class="telephone">
+                <label for="dieuKienSuDung">Điều kiện sử dụng:</label>
+                <input id="dieuKienSuDung" type="number" placeholder="Điều kiện sử dụng"
+                    [formControl]="newVoucherCondition" required>
+            </div>
+            <div class="telephone">
+                <label for="soLuong">Số lượng:</label>
+                <input id="soLuong" type="number" placeholder="Số lượng" [formControl]="newVoucherQuantity" required>
+            </div>
+            <div class="box-ip">
+                <div class="submit">
+                    <input type="submit" value="Thêm" id="form_button" />
+                </div>
+                <div class="submit">
+                    <input (click)="toggleAddVoucherForm()" type="button" value="Huỷ" id="form_button" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,367 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <ol class="activity-checkout mb-0 px-4 mt-3">
+                        <li class="checkout-item" *ngIf="isEditing || thongTinKhachHangList.length === 0" #formElement>
+                            <div class="avatar checkout-icon p-1">
+                                <div class="avatar-title rounded-circle bg-primary">
+                                    <i class="bx bxs-receipt text-white font-size-20"></i>
+                                </div>
+                            </div>
+                            <div class="feed-item-list">
+                                <div>
+                                    <h5 class="font-size-16 mb-1">Thông tin đơn đặt hàng</h5>
+                                    <div class="mb-3">
+                                        <form>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-name">Tên người
+                                                                nhận</label>
+                                                            <input type="text" class="form-control" id="billing-name"
+                                                                [(ngModel)]="thongTinKhachHang.tenNguoiNhan"
+                                                                name="tenNguoiNhan" placeholder="Nhập tên người nhận">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-address">Địa chỉ chi
+                                                                tiết</label>
+                                                            <input type="text" class="form-control" id="billing-address"
+                                                                [(ngModel)]="thongTinKhachHang.diaChi" name="diaChi"
+                                                                placeholder="Nhập địa chỉ chi tiết">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-phone">Số điện thoại
+                                                                nhận hàng</label>
+                                                            <input type="text" class="form-control" id="billing-phone"
+                                                                [(ngModel)]="thongTinKhachHang.sdtKh" name="sdtKh"
+                                                                placeholder="Nhập số điện thoại">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-4 mb-lg-0">
+                                                            <div>
+                                                                <select class="option-locait" id="city"
+                                                                    (change)="onCityChange($event)">
+                                                                    <option value="" selected>Chọn tỉnh thành</option>
+                                                                    <option *ngFor="let city of cities"
+                                                                        [value]="city.name" [attr.data-id]="city.code">
+                                                                        {{ city.name }}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-4 mb-lg-0">
+                                                            <select class="option-locait" id="district"
+                                                                (change)="onDistrictChange($event)">
+                                                                <option value="" selected>Chọn quận huyện</option>
+                                                                <option *ngFor="let district of districts"
+                                                                    [value]="district.name"
+                                                                    [attr.data-id]="district.code">{{ district.name }}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-0">
+                                                            <select class="option-locait" id="ward"
+                                                                (change)="onWardChange($event)">
+                                                                <option value="" selected>Chọn phường xã</option>
+                                                                <option *ngFor="let ward of wards" [value]="ward.name"
+                                                                    [attr.data-id]="ward.code">{{ ward.name }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="billing-note">Ghi chú</label>
+                                                    <textarea class="form-control" id="billing-note"
+                                                        [(ngModel)]="thongTinKhachHang.ghiChu" name="ghiChu" rows="3"
+                                                        placeholder="Nhập thông tin ghi chú"></textarea>
+                                                </div>
+
+
+                                                <!-- Nút Thêm khi ở trạng thái thêm mới --> <button
+                                                    class="btn btn-success"
+                                                    *ngIf="isAddingNew || thongTinKhachHangList.length === 0"
+                                                    (click)="saveThongTinKhachHang()"> <i
+                                                        class="mdi mdi-cart-outline me-1"></i>Thêm </button>
+                                                <!-- Nút Cập nhật khi không ở trạng thái thêm mới --> <button
+                                                    class="btn btn-success" *ngIf="!isAddingNew && isEditMode"
+                                                    (click)="updateThongTinKhachHang()"> <i
+                                                        class="mdi mdi-cart-outline me-1"></i>Cập nhật </button>
+                                                <!-- Nút Huỷ luôn hiện khi đang chỉnh sửa --> <button
+                                                    class="btn btn-success"
+                                                    *ngIf="isEditing || thongTinKhachHangList.length === 0"
+                                                    (click)="cancelEdit()">
+                                                    <i class="mdi mdi-cart-outline me-1"></i>Huỷ </button>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="checkout-item">
+                            <div class="avatar checkout-icon p-1">
+                                <div class="avatar-title rounded-circle bg-primary">
+                                    <i class="bx bxs-truck text-white font-size-20"></i>
+                                </div>
+                            </div>
+                            <div class="feed-item-list">
+                                <div>
+                                    <div class="heading-item">
+                                        <h5 class="font-size-16 mb-1"> Địa chỉ giao hàng của bạn</h5>
+                                        <div class="add-diachi" (click)="showAddAddressForm()">
+                                            <span>Thêm địa chỉ giao hàng</span>
+                                            <i class='bx bx-plus-circle'></i>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h5 class="font-size-14 mb-3">Chọn địa chỉ giao hàng :</h5>
+                                        <div class="row" *ngIf="thongTinKhachHangList.length > 0">
+                                            <div class="col-lg-10 col-sm-6">
+                                                <div data-bs-toggle="collapse">
+                                                    <label class="card-radio-label mb-0"
+                                                        *ngFor="let info of thongTinKhachHangList">
+                                                        <input type="radio" name="address"
+                                                            [id]="'info-address' + info.idThongTin"
+                                                            class="card-radio-input" [(ngModel)]="selectedAddress"
+                                                            [ngModelOptions]="{standalone: true}" [value]="info">
+
+                                                        <div class="card-radio text-truncate p-3">
+                                                            <span class="text-edit-remove fw-normal d-block">
+                                                                <i class="bx bx-pencil font-size-16"
+                                                                    (click)="editThongTinKhachHang(info)"></i>
+                                                            </span>
+                                                            <span class="fs-14 mb-2 d-block span-bold">Tên người nhận:
+                                                                {{ info.tenNguoiNhan }}</span>
+                                                            <div class="locaition">
+                                                                <span>Tỉnh thành phố: {{ info.tinhThanh }}</span>
+                                                            </div>
+                                                            <div class="locaition">
+                                                                <span>Quận huyện: {{ info.quanHuyen }}</span>
+                                                            </div>
+                                                            <div class="locaition">
+                                                                <span>Xã phường: {{ info.phuongXa }}</span>
+                                                            </div>
+                                                            <span
+                                                                class="text-muted fw-normal text-wrap mb-1 d-block">Địa
+                                                                chỉ chi tiết: {{ info.diaChi }}</span>
+                                                            <span class="text-muted fw-normal d-block">SĐT người nhận:
+                                                                {{ info.sdtKh }}</span>
+                                                            <span class="text-muted fw-normal d-block">Ghi chú: {{
+                                                                info.ghiChu }}</span>
+                                                            <span class="text-edit-remove fw-normal d-block">
+                                                                <i class='bx bx-trash'
+                                                                    (click)="confirmDeleteThongTinKhachHang(info)"></i>
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="checkout-item">
+                            <div class="avatar checkout-icon p-1">
+                                <div class="avatar-title rounded-circle bg-primary">
+                                    <i class="bx bxs-wallet-alt text-white font-size-20"></i>
+                                </div>
+                            </div>
+                            <div class="feed-item-list">
+                                <div>
+                                    <h5 class="font-size-16 mb-1">Phương thức thanh toán</h5>
+                                </div>
+                                <div>
+                                    <h5 class="font-size-14 mb-3">Chọn phương thức thanh toán :</h5>
+                                    <div class="row">
+
+                                        <div class="col-lg-4 col-sm-6">
+                                            <div>
+                                                <label class="card-radio-label">
+                                                    <input type="radio" name="pay-method" id="pay-methodoption2"
+                                                        class="card-radio-input" [(ngModel)]="paymentMethod"
+                                                        [value]="'pay-online'">
+                                                    <span class="card-radio py-3 text-center text-truncate">
+                                                        <i class="bx bxl-paypal d-block h2 mb-3"></i>
+                                                        Thanh toán trực tuyến
+                                                    </span>
+                                                </label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-sm-6">
+                                            <div>
+                                                <label class="card-radio-label">
+                                                    <input type="radio" name="pay-method" id="pay-methodoption3"
+                                                        class="card-radio-input" [value]="'cod'"
+                                                        [(ngModel)]="paymentMethod" />
+
+                                                    <span class="card-radio py-3 text-center text-truncate">
+                                                        <i class="bx bx-money d-block h2 mb-3"></i>
+                                                        <span>Thanh toán khi nhận hàng</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-4">
+            <div class="card checkout-order-summary">
+                <div class="card-body">
+                    <div class="p-3 bg-light mb-3 custom-voucher">
+                        <input class="voucher" type="text" [(ngModel)]="voucherCode"
+                            placeholder="Nhập mã giảm giá (nếu có)">
+                        <button class="voucher-btn" (click)="applyVoucher()">Áp dụng</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-centered mb-0 table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0" style="width: 110px;" scope="col">Sản phẩm</th>
+                                    <th class="border-top-0" scope="col">Tên sản phẩm</th>
+                                    <th class="border-top-0" scope="col">Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let cartItem of selectedCartItems">
+                                <tr>
+                                    <th scope="row"><img [src]="cartItem.productOption.linkAnh"
+                                            alt="{{ cartItem.productOption.tenSp }}"
+                                            title="{{ cartItem.productOption.tenSp }}" class="avatar-lg rounded"></th>
+                                    <td>
+                                        <h5 class="font-size-16 text-truncate"> <a href="#" class="text-dark">{{
+                                                cartItem.productOption.tenSp }}</a> </h5>
+                                        <p class="text-muted mb-0 mt-1"> {{cartItem.productOption.mauSac}}, {{
+                                            cartItem.productOption.giaSp | customCurrency }} x {{ cartItem.soLuong }}
+                                        </p>
+                                    </td>
+                                    <td>{{ cartItem.productOption.giaSp * cartItem.soLuong | customCurrency }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">
+                                        <h5 class="font-size-14 m-0">Tổng tiền sản phẩm:</h5>
+                                    </td>
+                                    <td>{{ calculateTotalProductPrice() | customCurrency }}</td>
+                                </tr>
+                                <tr *ngIf="discountAmount > 0">
+                                    <td colspan="2">
+                                        <h5 class="font-size-14 m-0">Mã giảm giá :</h5>
+                                    </td>
+                                    <td>-{{ discountAmount | customCurrency }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h5 class="font-size-14 m-0">Phí vận chuyển :</h5>
+                                    </td>
+                                    <td>{{ shippingFee | customCurrency }}</td>
+                                </tr>
+                                <tr class="bg-light">
+                                    <td colspan="2">
+                                        <h5 class="font-size-14 m-0">Tổng tiền:</h5>
+                                    </td>
+                                    <td>{{ (calculateTotalProductPrice() + shippingFee - discountAmount) |
+                                        customCurrency }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="text-end mt-2 mt-sm-0">
+                            <div class="btn btn-success" (click)="placeOrder()"> <i
+                                    class="mdi mdi-cart-outline me-1"></i>Đặt hàng </div>
+                            <button type="button" class="btn btn-danger" (click)="onCancel()">Huỷ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- end row -->
+
+</div>
+
+
+<!-- Modal box -->
+<div class="modal-box" #modalBox>
+    <div class="modal-switch">
+        <h2>Bạn có muốn xóa sản phẩm này?</h2>
+        <div class="toggle-container">
+            <input type="radio" name="choice" id="confirm" (click)="deleteThongTinKhachHang()" />
+            <label class="option-label" for="confirm">Yes</label>
+            <input type="radio" name="choice" id="cancel" (click)="cancelDelete()" checked />
+            <label class="option-label" for="cancel">No</label>
+            <span class="toggleFilter"></span>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="isProcessing" class="modal">
+    <svg class="pencil" viewBox="0 0 200 200" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <clipPath id="pencil-eraser">
+                <rect rx="5" ry="5" width="30" height="30"></rect>
+            </clipPath>
+        </defs>
+        <circle class="pencil__stroke" r="70" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-dasharray="439.82 439.82" stroke-dashoffset="439.82" stroke-linecap="round"
+            transform="rotate(-113,100,100)" />
+        <g class="pencil__rotate" transform="translate(100,100)">
+            <g fill="none">
+                <circle class="pencil__body1" r="64" stroke="hsl(223,90%,50%)" stroke-width="30"
+                    stroke-dasharray="402.12 402.12" stroke-dashoffset="402" transform="rotate(-90)" />
+                <circle class="pencil__body2" r="74" stroke="hsl(223,90%,60%)" stroke-width="10"
+                    stroke-dasharray="464.96 464.96" stroke-dashoffset="465" transform="rotate(-90)" />
+                <circle class="pencil__body3" r="54" stroke="hsl(223,90%,40%)" stroke-width="10"
+                    stroke-dasharray="339.29 339.29" stroke-dashoffset="339" transform="rotate(-90)" />
+            </g>
+            <g class="pencil__eraser" transform="rotate(-90) translate(49,0)">
+                <g class="pencil__eraser-skew">
+                    <rect fill="hsl(223,90%,70%)" rx="5" ry="5" width="30" height="30" />
+                    <rect fill="hsl(223,90%,60%)" width="5" height="30" clip-path="url(#pencil-eraser)" />
+                    <rect fill="hsl(223,10%,90%)" width="30" height="20" />
+                    <rect fill="hsl(223,10%,70%)" width="15" height="20" />
+                    <rect fill="hsl(223,10%,80%)" width="5" height="20" />
+                    <rect fill="hsla(223,10%,10%,0.2)" y="6" width="30" height="2" />
+                    <rect fill="hsla(223,10%,10%,0.2)" y="13" width="30" height="2" />
+                </g>
+            </g>
+            <g class="pencil__point" transform="rotate(-90) translate(49,-30)">
+                <polygon fill="hsl(33,90%,70%)" points="15 0,30 30,0 30" />
+                <polygon fill="hsl(33,90%,50%)" points="15 0,6 30,0 30" />
+                <polygon fill="hsl(223,10%,10%)" points="15 0,20 10,10 10" />
+            </g>
+        </g>
+    </svg>
+</div>

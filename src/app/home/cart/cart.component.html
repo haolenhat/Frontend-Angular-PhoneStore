@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <a [routerLink]="['home']" class="btn btn-warning" data-abc="true"> <i
+                    class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i> Trở
+                về trang
+                chủ</a>
+        </div>
+    </div>
+    <div class="bg-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <div class="heading-cart"><i class='bx bx-cart'></i>
+                                <span>Giỏ hàng</span>
+                            </div>
+
+                        </div>
+                        <div class="col text-end text-muted align-self-center" *ngIf="cartItems.length > 0">
+                            Số lượng sản phẩm: {{ cartItems.length }}
+                        </div>
+                        <div class="col text-end text-muted align-self-center" *ngIf="cartItems.length === 0">
+                            Bạn chưa có sản phẩm nào trong giỏ hàng!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive" *ngIf="cartItems.length > 0">
+                    <table class="table border-top border-bottom table-hover">
+                        <thead>
+                            <tr>
+                                <th><i class='bx bx-square'></i></th>
+                                <th>Ảnh</th>
+                                <th>Tên</th>
+                                <th>Màu</th>
+                                <th>Dung lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Số tiền</th>
+                                <th class="text-end">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cartItem of cartItems">
+                                <td>
+                                    <input type="checkbox" [(ngModel)]="cartItem.checked"
+                                        (change)="updateCheckedTotal()" />
+                                </td>
+                                <td>
+                                    <img class="img-fluid" [src]="cartItem.productOption.linkAnh"
+                                        alt="{{ cartItem.productOption.tenSp }}" width="50">
+                                </td>
+                                <td>
+                                    <h6>{{ cartItem.productOption.tenSp }}</h6>
+                                </td>
+                                <td>
+                                    <h6>{{ cartItem.productOption.mauSac }}</h6>
+                                </td>
+                                <td>
+                                    <h6>{{ cartItem.productOption.dungLuong }}</h6>
+                                </td>
+                                <td>
+                                    <h6>{{ cartItem.productOption.giaSp | customCurrency}}</h6>
+                                </td>
+                                <td>
+                                    <div class="item-quantity">
+                                        <i class='bx bx-minus-circle' (click)="decreaseQuantity(cartItem)"></i>
+                                        <input type="number" class="mt-2 form-control form-control-sm text-center"
+                                            [(ngModel)]="cartItem.soLuong"
+                                            (ngModelChange)="updateCartItemQuantity(cartItem, $event)" min="1" max="100"
+                                            style="width: 50px;">
+                                        <i class='bx bx-plus-circle' (click)="increaseQuantity(cartItem)"></i>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <h6>{{ cartItem.productOption.giaSp * cartItem.soLuong | customCurrency }}</h6>
+                                </td>
+                                <td class="text-end">
+                                    <div class="delete__product" (click)="toggleModal(cartItem)">
+                                        <span>Xoá</span>
+                                        <i class='bx bx-trash'></i>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <div class="cart-img" *ngIf="cartItems.length === 0"> <img class="imgnocart"
+                        src="./images/imagenocart.jpg" alt=""> </div>
+
+                <div *ngIf="cartItems.length > 0" class="text-end mt-3">
+                    <h5><b>Tổng tiền: {{ getCheckedTotalPrice() | customCurrency }}</b></h5>
+                    <button type="button" class="btn btn-primary btn-lg" style="width: 120px;"
+                        [disabled]="totalCheckedPrice === 0" (click)="displaySelectedCartItems()">
+                        Đặt hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal box -->
+<div class="modal-box" [ngClass]="{'d-block': showModal, 'd-none': !showModal}">
+    <div class="modal-switch">
+        <h2>Bạn có muốn xóa sản phẩm này?</h2>
+        <div class="toggle-container">
+            <input type="radio" name="choice" id="confirm" (click)="confirmDelete()" />
+            <label class="option-label" for="confirm">Yes</label>
+            <input type="radio" name="choice" id="cancel" checked (click)="toggleModal()" />
+            <label class="option-label" for="cancel">No</label>
+            <span class="toggleFilter"></span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-box" [ngClass]="{'d-block': showProductLimitModal, 'd-none': !showProductLimitModal}">
+    <div class="modal-switch">
+        <h2>{{ modalMessage }}</h2>
+        <div class="toggle-container">
+            <label class="option-label" (click)="closeProductLimitModal()">Đóng</label>
+        </div>
+    </div>
+</div>

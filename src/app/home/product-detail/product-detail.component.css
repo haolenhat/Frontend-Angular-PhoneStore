@@ -1,0 +1,1009 @@
+body {
+    background-color: #ecedee
+}
+
+.card {
+    border: none;
+    overflow: hidden
+}
+
+.thumbnail_images ul {
+    list-style: none;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 10px
+}
+
+.thumbnail_images ul li {
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+.thumbnail_images ul li:hover {
+    border: 2px solid #000
+}
+
+.main_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 0.5px solid #ccc;
+    margin-top: 10px;
+}
+
+.heart {
+    height: 29px;
+    width: 29px;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.content p {
+    font-size: 12px
+}
+
+.ratings span {
+    font-size: 14px;
+    margin-left: 12px
+}
+
+.colors {
+    margin-top: 5px
+}
+
+.colors ul {
+    list-style: none;
+    display: flex;
+    padding-left: 0px
+}
+
+.colors ul li {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer
+}
+
+.colors ul li:nth-child(1) {
+    background-color: #6c704d
+}
+
+.colors ul li:nth-child(2) {
+    background-color: #96918b
+}
+
+.colors ul li:nth-child(3) {
+    background-color: #68778e
+}
+
+.colors ul li:nth-child(4) {
+    background-color: #263f55
+}
+
+.colors ul li:nth-child(5) {
+    background-color: black
+}
+
+.right-side {
+    position: relative
+}
+
+.search-option {
+    position: absolute;
+    background-color: #000;
+    overflow: hidden;
+    align-items: center;
+    color: #fff;
+    width: 200px;
+    height: 200px;
+    border-radius: 49% 51% 50% 50% / 68% 69% 31% 32%;
+    left: 30%;
+    bottom: -250px;
+    transition: all 0.5s;
+    cursor: pointer
+}
+
+.search-option .first-search {
+    position: absolute;
+    top: 20px;
+    left: 90px;
+    font-size: 20px;
+    opacity: 1000
+}
+
+.search-option .inputs {
+    opacity: 0;
+    transition: all 0.5s ease;
+    transition-delay: 0.5s;
+    position: relative
+}
+
+.search-option .inputs input {
+    position: absolute;
+    top: 200px;
+    left: 30px;
+    padding-left: 20px;
+    background-color: transparent;
+    width: 300px;
+    border: none;
+    color: #fff;
+    border-bottom: 1px solid #eee;
+    transition: all 0.5s;
+    z-index: 10
+}
+
+.search-option .inputs input:focus {
+    box-shadow: none;
+    outline: none;
+    z-index: 10
+}
+
+.search-option:hover {
+    border-radius: 0px;
+    width: 100%;
+    left: 0px
+}
+
+.search-option:hover .inputs {
+    opacity: 1
+}
+
+.search-option:hover .first-search {
+    left: 27px;
+    top: 25px;
+    font-size: 15px
+}
+
+.search-option:hover .inputs input {
+    top: 20px
+}
+
+.search-option .share {
+    position: absolute;
+    right: 20px;
+    top: 22px
+}
+
+.buttons .btn {
+    height: 50px;
+    width: 150px;
+    border-radius: 0px !important
+}
+
+.dungluong-list {
+    display: flex;
+}
+
+.dungluong-list li {
+    padding: 5px;
+    background-color: #68788e;
+    border-radius: 5px;
+    width: 80px;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+ul {
+    padding-left: 0;
+}
+
+
+
+.buttons .btn-dark {
+    width: 200px;
+    border-radius: 10px !important;
+}
+
+.list-thongtin {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: normal !important;
+}
+
+.list-thongtin li {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+}
+
+
+
+
+.thumbnail_images h3 {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.thumbnail_images ul li:hover {
+    border: none;
+}
+
+.thumbnail_images ul li {
+    border: none;
+    cursor: default;
+}
+
+.all-sp {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding-bottom: 40px;
+}
+
+
+.product-heading {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #0a263c;
+    display: -webkit-box;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 2;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+}
+
+.product-heading i {
+    color: #ffbc00;
+}
+
+.product-heading span {
+    font-weight: normal;
+}
+
+.product-sub_heading {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #0a263c;
+    display: -webkit-box;
+    font-size: 14px;
+    line-height: 2;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.price-new {
+    color: red;
+}
+
+.product-sub_heading span {
+    margin-right: 5px;
+}
+
+
+
+
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 6px;
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
+}
+
+.comment-box {
+    padding: 5px;
+    transition: opacity 0.5s ease;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px 0 rgba(60, 66, 87, .08), 0 5px 15px 0 rgba(0, 0, 0, .12);
+    padding: 30px 30px;
+    margin-top: 10px;
+}
+
+
+
+.comment-area textarea {
+    resize: none;
+    border: 1px solid #ad9f9f;
+}
+
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important;
+}
+
+.send {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #f50202;
+    border-color: #f50202;
+}
+
+
+.rating {
+    display: flex;
+    margin-top: -10px;
+    flex-direction: row-reverse;
+    margin-left: -4px;
+    float: left;
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 19px;
+    font-size: 25px;
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.comment-icon {
+    font-size: 40px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.rating label {
+    margin-left: 10px;
+}
+
+
+
+@media (min-width: 0) {
+    .g-mr-15 {
+        margin-right: 1.07143rem !important;
+    }
+}
+
+@media (min-width: 0) {
+    .g-mt-3 {
+        margin-top: 0.21429rem !important;
+    }
+}
+
+.g-height-50 {
+    height: 50px;
+}
+
+.g-width-50 {
+    width: 50px !important;
+}
+
+@media (min-width: 0) {
+    .g-pa-30 {
+        padding: 2.14286rem !important;
+    }
+}
+
+.g-bg-secondary {
+    background-color: #fafafa !important;
+}
+
+.u-shadow-v18 {
+    box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
+}
+
+.g-color-gray-dark-v4 {
+    color: #777 !important;
+}
+
+.g-font-size-12 {
+    font-size: 0.85714rem !important;
+}
+
+.media-comment {
+    margin-top: 20px;
+    display: flex;
+
+}
+
+.media-body {
+    border-radius: 5px;
+
+    width: 90%;
+}
+
+.media-body h5 {
+    font-size: 16px;
+}
+
+.media-body p {
+    font-size: 12px;
+}
+
+
+.no-select>label {
+    position: relative;
+    width: 19px;
+    font-size: 25px;
+    color: #ff0000;
+    cursor: default;
+    z-index: 1;
+}
+
+
+.btn-comment {
+    cursor: pointer;
+}
+
+.btn-comment:hover {
+    opacity: 0.6;
+    transition: ease 0.5s;
+}
+
+
+.yeucau {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+.yeucau:hover {
+    opacity: 0.6;
+    transition: ease 0.5s;
+}
+
+.yeucau span {
+    margin-right: 5px;
+}
+
+
+
+.container-fluid {
+    padding: 0 15px;
+}
+
+.bg-card {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.card {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+
+
+.text-end img {
+    width: 24px;
+    cursor: pointer;
+}
+
+.text-end img:hover {
+    opacity: 0.5;
+    transition: linear 0.2s;
+}
+
+
+
+
+h2 {
+    font-size: 32px;
+    margin: 0.2em 0;
+}
+
+.modal-switch {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.toggleFilter {
+    width: 0;
+    display: inline-block;
+    background-color: var(--orange);
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.4s cubic-bezier(0, 0, 0.25, 1);
+}
+
+.option-label {
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid var(--black);
+    width: 85px;
+    padding: 15px 0;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.4s;
+    margin-right: 10px;
+    background-color: #4DA0B0;
+    border-radius: 5px;
+}
+
+.toggle-container {
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    margin: 2em 0;
+}
+
+.toggle-container input[type="radio"] {
+    visibility: hidden;
+    position: absolute;
+    height: 100%;
+}
+
+.toggle-container input[type="radio"]#confirm:checked~label[for="confirm"] {
+    color: white;
+    border: 1px solid var(--orange);
+}
+
+.toggle-container input[type="radio"]#confirm:checked~.toggleFilter {
+    left: 0;
+    opacity: 1;
+    width: 87px;
+}
+
+.toggle-container input[type="radio"]#cancel:checked~label[for="cancel"] {
+    color: white;
+    border: 1px solid var(--orange);
+}
+
+.toggle-container input[type="radio"]#cancel:checked~.toggleFilter {
+    left: 100px;
+    width: 87px;
+    opacity: 1;
+}
+
+.modal-box1,
+.modal-box {
+    position: fixed;
+    border: 0.5px solid;
+    width: 40%;
+    padding: 50px;
+    border-radius: 10px;
+    top: 50%;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: linear 0.5s;
+    display: block;
+    z-index: 999999;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+/* Ẩn nút tăng/giảm trên tất cả các trình duyệt */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ẩn nút tăng/giảm trên Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-quantity i {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px 5px 0 5px;
+}
+
+.item-quantity i {
+    position: relative;
+}
+
+.item-quantity i:hover {
+    color: #cccccc;
+    transform: scale(1.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+.table-responsive {
+    text-align: center;
+}
+
+.delete__product {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.delete__product:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    /* Định dạng cơ bản cho checkbox */
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    /* Loại bỏ giao diện mặc định */
+    -webkit-appearance: none;
+    /* Loại bỏ giao diện trên Webkit */
+    background-color: white;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    /* Khi checkbox được chọn */
+    background-color: gray;
+    border-color: gray;
+}
+
+input[type="checkbox"]:checked::after {
+    /* Thêm dấu kiểm (optional) */
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-box1 h2 {
+    font-size: 18px;
+
+}
+
+.imgnocart {
+    width: 30%;
+}
+
+.cart-img {
+    display: flex;
+    justify-content: center;
+}
+
+
+.heading-cart {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.heading-cart i {
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+.btn-warning {
+    background-color: #4d8076;
+    color: white;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #579085;
+    transition: linear 0.5s;
+}
+
+
+.box-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Màu nền mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Đảm bảo modal nằm trên các phần tử khác */
+}
+
+
+
+
+.box-login-item {
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .1), 0 2px 6px 2px rgba(60, 64, 67, .15);
+    width: 40%;
+    padding: 50px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: linear 0.5s;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box-login-item img {
+    height: 25%;
+    width: 25%;
+}
+
+.box-login-item i {
+    position: absolute;
+    top: 4%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.box-login-item i:hover {
+    opacity: 0.6;
+    transition: all 0.5s;
+}
+
+.box-login-item h4 {
+    color: red;
+}
+
+
+.box-login-item p {
+    font-weight: bold;
+}
+
+.box-login-item a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
+.listbtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-loginup {
+    margin: 5px;
+    width: 30%;
+    color: white;
+}
+
+
+
+.dungluong-list li {
+    display: flex;
+    justify-content: center;
+}
+
+/* Dùng chung cho danh sách màu sắc */
+.dungluong-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* Đảm bảo các phần tử xuống dòng khi tràn */
+    gap: 10px;
+    /* Khoảng cách giữa các phần tử */
+    padding: 0;
+    margin: 0;
+}
+
+.dungluong-list .col-3 {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid transparent;
+    /* Mặc định không có border */
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    border: 0.5px solid;
+    /* Căn giữa nội dung */
+}
+
+/* Ẩn radio button */
+.dungluong-list input[type="radio"] {
+    display: none;
+}
+
+/* Hiển thị border khi được chọn */
+.dungluong-list .col-3.selected {
+    border: 2px solid #00c9a7;
+}
+
+/* Thêm hiệu ứng hover */
+.dungluong-list .col-3:hover {
+    border-color: #00c9a7;
+}
+
+/* Hình ảnh (nếu có) */
+.dungluong-list .col-3 img {
+    width: 50px;
+    /* Tùy chỉnh kích thước */
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+    /* Căn giữa hình và thêm khoảng cách bên dưới */
+}
+
+.dungluong-list label {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.choose-color img {
+    width: 30px;
+    height: 30px;
+}
+
+.btn-buy {
+    background-color: #00c9a7;
+    border: none;
+}
+
+.btn-buy:hover {
+    border: 1px solid #828181;
+}
+
+.btn-addcart {
+    border: 1px solid #00c9a7;
+    background-color: #fff;
+    color: #00c9a7;
+}
+
+.btn-addcart:hover {
+    background-color: #ccc;
+}
+
+.btn i {
+    margin-top: 2px;
+}
+
+.hienthithem {
+    text-align: center;
+    color: rgb(56, 160, 230);
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.hienthithem:hover {
+    opacity: 0.7;
+    transition: all 0.5s;
+}
+
+.bg-white {
+    overflow: hidden;
+}
+
+.phantrang {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+.active>.page-link,
+.page-link.active {
+    background-color: #00c9a7;
+    border: 0.5px solid;
+}
+
+.page-link {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.heading-productnek {
+    padding: 10px;
+    font-weight: bold;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #0a263c;
+    display: -webkit-box;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 2;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.heading-productnek span {
+    margin-left: 10px;
+
+}
+
+.btn-warning {
+    background-color: #4d8076;
+    color: white;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #579085;
+    transition: linear 0.5s;
+}
+
+.content {
+    background: linear-gradient(180deg, #3a78d0, #277cea);
+    margin-bottom: 10px;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}

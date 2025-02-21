@@ -1,0 +1,126 @@
+<div class="form-main" *ngIf="isFormVisible">
+
+    <div class="form-container">
+        <h4>Nhập thông tin sản phẩm</h4>
+        <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+            <label for="ten_sp">Tên Sản Phẩm:</label>
+            <input type="text" id="ten_sp" name="ten_sp" [(ngModel)]="product.ten_sp" required>
+
+            <label for="thong_tin_sp">Thông Tin Sản Phẩm:</label>
+            <textarea id="thong_tin_sp" name="thong_tin_sp" [(ngModel)]="product.thong_tin_sp" rows="4"
+                required></textarea>
+
+            <label for="link_anh">Chọn Ảnh Sản Phẩm:</label>
+            <input type="file" id="link_anh" name="link_anh" (change)="onFileChange($event)" accept="image/*" required>
+
+            <label for="trong_luong">Trọng Lượng (kg):</label>
+            <input type="number" id="trong_luong" name="trong_luong" [(ngModel)]="product.trong_luong" step="0.1"
+                required>
+
+            <label for="man_hinh">Màn Hình:</label>
+            <input type="text" id="man_hinh" name="man_hinh" [(ngModel)]="product.man_hinh" required>
+
+            <label for="bo_nho">Bộ Nhớ:</label>
+            <input type="text" id="bo_nho" name="bo_nho" [(ngModel)]="product.bo_nho" required>
+
+            <label for="the_sim">Loại SIM:</label>
+            <input type="text" id="the_sim" name="the_sim" [(ngModel)]="product.the_sim" required>
+
+            <label for="he_dieu_hanh">Hệ Điều Hành:</label>
+            <input type="text" id="he_dieu_hanh" name="he_dieu_hanh" [(ngModel)]="product.he_dieu_hanh" required>
+
+            <label for="cong_sac">Cổng Sạc:</label>
+            <input type="text" id="cong_sac" name="cong_sac" [(ngModel)]="product.cong_sac" required>
+
+            <label for="camera">Camera:</label>
+            <input type="text" id="camera" name="camera" [(ngModel)]="product.camera" required>
+
+            <label for="bao_mat">Bảo Mật:</label>
+            <input type="text" id="bao_mat" name="bao_mat" [(ngModel)]="product.bao_mat" required>
+
+            <label for="pin">Pin:</label>
+            <input type="text" id="pin" name="pin" [(ngModel)]="product.pin" required>
+
+            <label for="bao_hanh">Bảo Hành:</label>
+            <input type="text" id="bao_hanh" name="bao_hanh" [(ngModel)]="product.bao_hanh" required>
+
+            <label for="danh_muc">Danh Mục Sản Phẩm:</label>
+            <select id="danh_muc" name="danh_muc" [(ngModel)]="product.danh_muc" required>
+                <option value="iphone">iPhone</option>
+                <option value="oppo">Oppo</option>
+                <option value="xiaomi">Xiaomi</option>
+                <option value="poco">Poco</option>
+            </select>
+
+            <h4>Tùy Chọn Sản Phẩm</h4>
+            <label for="mau_sac">Màu Sắc:</label>
+            <input type="text" id="mau_sac" name="mau_sac" [(ngModel)]="product.tuyChonSanPhams[0].mau_sac" required>
+
+            <label for="dung_luong">Dung Lượng:</label>
+            <input type="text" id="dung_luong" name="dung_luong" [(ngModel)]="product.tuyChonSanPhams[0].dung_luong"
+                required>
+
+            <label for="gia_sp">Giá Sản Phẩm (VND):</label>
+            <input type="number" id="gia_sp" name="gia_sp" [(ngModel)]="product.tuyChonSanPhams[0].gia_sp" step="0.01"
+                required>
+
+            <label for="khuyen_mai">Khuyến Mãi (VND):</label>
+            <input type="number" id="khuyen_mai" name="khuyen_mai" [(ngModel)]="product.tuyChonSanPhams[0].khuyen_mai"
+                step="0.01" required>
+
+            <label for="so_sao_trung_binh">Sao Trung Bình:</label>
+            <input type="number" id="so_sao_trung_binh" name="so_sao_trung_binh"
+                [(ngModel)]="product.tuyChonSanPhams[0].so_sao_trung_binh" step="0.1" required>
+
+            <label for="so_luot_danh_gia">Số Lượt Đánh Giá:</label>
+            <input type="number" id="so_luot_danh_gia" name="so_luot_danh_gia"
+                [(ngModel)]="product.tuyChonSanPhams[0].so_luot_danh_gia" required>
+
+            <label for="so_luot_binh_luan">Số Lượt Bình Luận:</label>
+            <input type="number" id="so_luot_binh_luan" name="so_luot_binh_luan"
+                [(ngModel)]="product.tuyChonSanPhams[0].so_luot_binh_luan" required>
+
+            <button type="submit" [disabled]="!productForm.form.valid">Gửi</button>
+        </form>
+    </div>
+</div>
+
+<!-- 
+<div class="main-edit">
+    <div class="icon">
+    </div>
+    <div class="container">
+        <div class="text">Chỉnh sửa thông tin nhân viên </div>
+        <form #contactForm="ngForm">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" name="firstName" />
+                    <div class="underline"></div>
+                    <label>Tên khách hàng</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="email" name="email" />
+                    <div class="underline"></div>
+                    <label>Địa chỉ email</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="role" />
+                    <div class="underline"></div>
+                    <label>Vai trò</label>
+                </div>
+            </div>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Thêm" />
+                </div>
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Huỷ" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

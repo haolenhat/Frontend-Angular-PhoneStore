@@ -1,0 +1,37 @@
+<div class="main-edit" *ngIf="selectedUser">
+    <div class="icon"></div>
+    <div class="container">
+        <div class="text">Chỉnh sửa thông tin nhân viên</div>
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" name="firstName" [(ngModel)]="selectedUser.tenKh" />
+                    <div class="underline"></div>
+                    <label>Tên khách hàng</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="email" name="email" [(ngModel)]="selectedUser.mail" />
+                    <div class="underline"></div>
+                    <label>Địa chỉ email</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="role" [(ngModel)]="selectedUser.role" />
+                    <div class="underline"></div>
+                    <label>Vai trò</label>
+                </div>
+            </div>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Thêm" />
+                </div>
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="button" value="Huỷ" (click)="onCancel()" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

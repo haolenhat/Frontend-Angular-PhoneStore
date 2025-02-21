@@ -1,0 +1,29 @@
+<div class="form-main">
+    <div class="wrapper">
+        <div class="title">
+            Đăng ký
+        </div>
+        <form (ngSubmit)="onSubmit()">
+            <div class="field">
+                <input type="text" id="tenKh" [(ngModel)]="tenKh" name="tenKh" required>
+                <label>Họ tên</label>
+            </div>
+            <div class="field">
+                <input type="text" id="mail" [(ngModel)]="mail" name="mail" required>
+                <label>Email</label>
+            </div>
+            <div class="field">
+                <input type="password" id="matKhau" [(ngModel)]="matKhau" name="matKhau" required>
+                <label>Mật khẩu</label>
+            </div>
+            <div class="field">
+                <input type="password" id="confirmMatKhau" [(ngModel)]="confirmMatKhau" name="confirmMatKhau" required>
+                <label>Nhập lại mật khẩu</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Đăng ký">
+            </div>
+            <div *ngIf="message">{{ message }}</div>
+        </form>
+    </div>
+</div>

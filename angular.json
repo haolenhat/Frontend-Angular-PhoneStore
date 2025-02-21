@@ -33,13 +33,25 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/style.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/boxicons/css/boxicons.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/slick-carousel/slick/slick.scss",
+              "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/script.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -88,6 +100,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "proxyConfig": "proxy.conf.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -107,5 +120,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "8536fad5-4f19-4690-9cd4-a1ff10347272"
   }
 }

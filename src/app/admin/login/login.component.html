@@ -1,0 +1,28 @@
+<div class="form-main">
+    <div class="wrapper">
+        <div class="title">
+            Đăng nhập
+        </div>
+        <form (ngSubmit)="onSubmit()">
+            <div class="field">
+                <input type="text" id="username" [(ngModel)]="username" name="username" required>
+                <label>Email</label>
+            </div>
+            <div class="field">
+                <input type="password" id="password" [(ngModel)]="password" name="password" required>
+                <label>Mật khẩu</label>
+            </div>
+            <div class="content">
+                <div class="pass-link">
+                    <a [routerLink]="['/forgot']">Quên mật khẩu?</a>
+                </div>
+            </div>
+            <div class="field">
+                <button type="submit">Đăng nhập</button>
+            </div>
+            <div class="signup-link">
+                Bạn chưa có tài khoản? <a [routerLink]="['/signup']">Đăng ký ngay!</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container container-custom mt-4">
+    <div class="products">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="all-products" role="tabpanel" aria-labelledby="all-products-tab">
+                <div class="d-flex p-3 bg-white mb-3 align-items-center">
+                    <img src="https://cdnv2.tgdd.vn/webmwg/2024/ContentMwg/images/noel/2024/tgdd/icon-title02.png"
+                        width="30" />
+                    <span class="font-weight-bold text-uppercase custom-h headingall">Sản phẩm mới nhất</span>
+                    <i class='bx bx-filter'></i>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Loop through products -->
+                <div class="col-2 mb-3 product-item" *ngFor="let product of paginatedAllProducts">
+                    <div class="card card-custom" (click)="viewProduct(product.idSp)">
+                        <img [src]="product.linkAnh" class="card-img-top" alt="{{ product.tenSp }}">
+                        <div class="card-body">
+                            <span class="font-weight-bold productname">{{ product.tenSp }}, {{ product.thongTinSp }}
+                                Chính hãng việt nam</span>
+                            <div class="about-item">
+                                <div class="d-flex">
+                                    <span class="font-weight-bold sale-product2">{{ product.productOptions[0].giaSp
+                                        | currency:'VND' }}</span>
+                                </div>
+                            </div>
+                            <p class="card-text mb-1 mt-1">Số lượt đánh giá và bình luận: {{ product.soLuotDanhGia }}
+                            </p>
+                            <div class="product__promotions">
+                                <p>Không phí chuyển đổi khi trả góp 0% qua thẻ tín dụng kỳ hạn 3-6 tháng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End loop -->
+            </div>
+        </div>
+    </div>
+</div>
