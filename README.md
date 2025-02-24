@@ -1,4 +1,4 @@
-# Phonestore
+# Frontend Phonestore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
 
@@ -32,7 +32,7 @@ Main Features
 
 Users can browse through the product list, view product details, and add items to their cart.
 
-![User interface](https://ibb.co/TBcpfzbQ)
+![User Interface](https://i.ibb.co/Kj6RPCLt/1.png)
 
 2. Shopping Cart Interface
 
