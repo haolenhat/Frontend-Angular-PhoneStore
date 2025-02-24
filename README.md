@@ -25,3 +25,31 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+Main Features
+
+1. User Interface (Shopping)
+
+Users can browse through the product list, view product details, and add items to their cart.
+
+
+
+2. Shopping Cart Interface
+
+Displays the list of products added to the cart, allowing users to modify quantities or remove items.
+
+
+
+3. Checkout Interface
+
+Users enter shipping details and choose a payment method.
+
+
+
+4. Order Confirmation Interface
+
+Displays order details after successful order placement.
+
+
+
+
