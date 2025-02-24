@@ -32,13 +32,13 @@ Main Features
 
 Users can browse through the product list, view product details, and add items to their cart.
 
-
+![User interface](https://ibb.co/TBcpfzbQ)
 
 2. Shopping Cart Interface
 
 Displays the list of products added to the cart, allowing users to modify quantities or remove items.
 
-
+![Shopping Cart Interface]([https://ibb.co/TBcpfzbQ](https://ibb.co/ndNvpcq))
 
 3. Checkout Interface
 
@@ -46,7 +46,16 @@ Users enter shipping details and choose a payment method.
 
 
 
-4. Order Confirmation Interface
+3. Order Confirmation Interface
+
+
+4. Admin Interface
+
+The admin panel allows for managing products, users, promotions, and other store settings, including adding, deleting, and modifying products and users.
+
+
+
+
 
 Displays order details after successful order placement.
 
